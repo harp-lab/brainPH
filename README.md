@@ -95,6 +95,9 @@ matrix
 - Calculate `p-value` using ANOVA test on the [316 x 3] size Wasserstein
   distances between the cohorts
 - ANOVA test p-value: 0.133
+- Wasserstein distance for the following three pairs: (1) TR=645ms and 
+  TR=1400ms, (2) TR=1400ms and TR=2500ms and, (1) TR=2500ms and TR=645ms 
+  plotted using box plots: [boxplots](screenshots/distribution_boxplot.png)
 - Plot WD distances between:
     - WD for all 316 subjects for mx645 and
       mx1400: [WD_mx645_mx1400](screenshots/WD_mx645_mx1400.png)
@@ -254,7 +257,10 @@ cohort comparison are statistically similar.
 | WD(P3, P1) | WD(P1, P2) | 0.451   | 0.561   |
 
 
-
+- Wasserstein distance for the following three pairs: (1) TR=645ms and 
+  TR=1400ms, (2) TR=1400ms and TR=2500ms and, (1) TR=2500ms and TR=645ms 
+  plotted using box plots:
+  ![alt boxplots](screenshots/distribution_boxplot.png)
 - WD for all 316 subjects for mx645 and mx1400:
   ![alt WD_mx645_mx1400](screenshots/WD_mx645_mx1400.png)
 - WD for all 316 subjects for mx1400 and std2500:
