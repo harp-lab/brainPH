@@ -46,6 +46,23 @@ def draw_line_chart(x, y, y_limit_bottom=0.0, y_limit_top=60.0,
     plt.show()
 
 
+def draw_boxplots(labels, data, colors, x_axis_label=None, y_axis_label=None):
+    plt.figure(figsize=(6, 3.5))
+    bp = plt.boxplot(data, notch=True, vert=True,
+                     patch_artist=True,
+                     labels=labels,
+                     medianprops={"color": "black"})
+    if x_axis_label:
+        plt.xlabel(x_axis_label)
+    if y_axis_label:
+        plt.ylabel(y_axis_label)
+
+    for box, color in zip(bp['boxes'], colors):
+        box.set_facecolor(color)
+    plt.tight_layout()
+    plt.show()
+
+
 def plot_mds(mds_matrix, title, color, index):
     x = mds_matrix[:, 0]
     y = mds_matrix[:, 1]
@@ -102,13 +119,20 @@ if __name__ == "__main__":
     subject_numbers = [i for i in range(1, 317)]
     # WD_mx645_mx1400
     draw_line_chart(subject_numbers, wd_645_1400, 0, 60, 0, 320,
-                    "Subject ID", "Distance", "WD(mx645 - mx1400)")  #
+                    "Subject ID", "Distance", "WD(mx645 - mx1400)")
+    boxplot_data = [wd_645_1400, wd_1400_2500, wd_2500_645]
+    boxplot_labels = ["WD(645ms-1400ms)", "WD(1400ms-2500ms)",
+                      "WD(2500ms-645ms)"]
+    boxplot_colors = ['orangered', 'lightblue', 'lightgreen']
+    draw_boxplots(boxplot_labels, boxplot_data, boxplot_colors,
+                  "Distributions",
+                  "Distance")
     # WD_mx1400_std2500
     draw_line_chart(subject_numbers, wd_1400_2500, 0, 60, 0, 320,
                     "Subject ID", "Distance", "WD(mx1400 - std2500)")
     # WD_std2500_mx645
     draw_line_chart(subject_numbers, wd_2500_645, 0, 60, 0, 320,
-                    "Subject ID", "Distance", "WD(std2500 - mx645)")
+                    "Subject ID", "Distance", "WD(mx1400 - std2500)")
 
     with open(mds_mx645_data_file) as fp:
         mds_mx645 = np.array(json.load(fp))
