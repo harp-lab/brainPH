@@ -118,6 +118,17 @@ def generate_kmeans_clusters(mx_645_mds_path,
     return cluster_info
 
 
+def get_subjects_cluster_id(mx_645_mds_path,
+                            mx_1400_mds_path,
+                            std_2500_mds_path):
+    dataset_mx_645 = get_dataset(mx_645_mds_path)
+    dataset_mx_1400 = get_dataset(mx_1400_mds_path)
+    dataset_std_645 = get_dataset(std_2500_mds_path)
+    n_clusters_645, labels_645 = get_labels_highest_score(dataset_mx_645)
+    n_clusters_1400, labels_1400 = get_labels_highest_score(dataset_mx_1400)
+    n_clusters_2500, labels_2500 = get_labels_highest_score(dataset_std_645)
+
+
 @timer
 def main():
     mx_645_mds_ws = "output/mds_mx645_ws.json"
@@ -125,12 +136,16 @@ def main():
     std_2500_mds_ws = "output/mds_std2500_ws.json"
     output_dir = "output"
 
-    cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
-                                               mx_1400_mds_ws,
-                                               std_2500_mds_ws,
-                                               output_dir, distance="ws",
-                                               single_figure=False)
-    print(f"Number of clusters in 3 cohorts: {cluster_summary}")
+    get_subjects_cluster_id(mx_645_mds_ws,
+                            mx_1400_mds_ws,
+                            std_2500_mds_ws)
+
+    # cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
+    #                                            mx_1400_mds_ws,
+    #                                            std_2500_mds_ws,
+    #                                            output_dir, distance="ws",
+    #                                            single_figure=False)
+    # print(f"Number of clusters in 3 cohorts: {cluster_summary}")
 
 
 if __name__ == "__main__":
