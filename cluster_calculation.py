@@ -118,6 +118,14 @@ def generate_kmeans_clusters(mx_645_mds_path,
     return cluster_info
 
 
+def show_clustering_table(labels_645, labels_1400, labels_2500):
+    print(f"Clustering result (645ms, 1400ms, 2500ms):")
+    for i in range(len(labels_645)):
+        print(f"{i + 1} & {labels_645[i]} & "
+              f"{labels_1400[i]} & {labels_2500[i]} \\\\ \\hline")
+    print("")
+
+
 def get_subjects_cluster_id(mx_645_mds_path,
                             mx_1400_mds_path,
                             std_2500_mds_path):
@@ -127,6 +135,7 @@ def get_subjects_cluster_id(mx_645_mds_path,
     n_clusters_645, labels_645 = get_labels_highest_score(dataset_mx_645)
     n_clusters_1400, labels_1400 = get_labels_highest_score(dataset_mx_1400)
     n_clusters_2500, labels_2500 = get_labels_highest_score(dataset_std_645)
+    show_clustering_table(labels_645, labels_1400, labels_2500)
 
 
 @timer
@@ -136,16 +145,14 @@ def main():
     std_2500_mds_ws = "output/mds_std2500_ws.json"
     output_dir = "output"
 
-    get_subjects_cluster_id(mx_645_mds_ws,
-                            mx_1400_mds_ws,
-                            std_2500_mds_ws)
+    # get_subjects_cluster_id(mx_645_mds_ws, mx_1400_mds_ws, std_2500_mds_ws)
 
-    # cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
-    #                                            mx_1400_mds_ws,
-    #                                            std_2500_mds_ws,
-    #                                            output_dir, distance="ws",
-    #                                            single_figure=False)
-    # print(f"Number of clusters in 3 cohorts: {cluster_summary}")
+    cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
+                                               mx_1400_mds_ws,
+                                               std_2500_mds_ws,
+                                               output_dir, distance="ws",
+                                               single_figure=False)
+    print(f"Number of clusters in 3 cohorts: {cluster_summary}")
 
 
 if __name__ == "__main__":
