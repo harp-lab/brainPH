@@ -3,6 +3,18 @@ import csv
 import numpy as np
 from time import time
 
+def generate_random_initial_dataset(n, seed_value):
+    # seed for reproducibility
+    np.random.seed(seed_value)
+    data = [[0 for j in range(n)] for i in range(n)]
+    for i in range(n):
+        for j in range(i):
+            if i != j:
+                random_number = np.random.random()
+                data[i][j] = random_number
+                data[j][i] = random_number
+    return data
+
 
 def get_adjacency_for_triangle(triangular_matrix, lower=True):
     matrix = []
