@@ -1,7 +1,9 @@
 import random
 import csv
+import os
 import numpy as np
 from time import time
+
 
 def generate_random_initial_dataset(n, seed_value):
     # seed for reproducibility
@@ -14,6 +16,31 @@ def generate_random_initial_dataset(n, seed_value):
                 data[i][j] = random_number
                 data[j][i] = random_number
     return data
+
+
+def write_csv(filepath, rows, delimiter):
+    with open(filepath, 'w', newline='') as f:
+        writer = csv.writer(f, delimiter=delimiter)
+        writer.writerows(rows)
+
+
+def generate_random_data(random_data_dir, start_subject=1, end_subject=316):
+    if os.path.exists(random_data_dir):
+        print(f"Random data path: {random_data_dir} exists. "
+              f"To generate new data, please delete {random_data_dir} first.")
+        return
+    os.makedirs(random_data_dir)
+    for subject_number in range(start_subject, end_subject + 1):
+        filepath_645 = f'{random_data_dir}/subject_{subject_number}_mx645.txt'
+        filepath_1400 = f'{random_data_dir}/subject_{subject_number}_mx1400.txt'
+        filepath_2500 = f'{random_data_dir}/subject_{subject_number}_std2500.txt'
+        data_645 = generate_random_initial_dataset(113, 645 * subject_number)
+        data_1400 = generate_random_initial_dataset(113, 1400 * subject_number)
+        data_2500 = generate_random_initial_dataset(113, 2500 * subject_number)
+        write_csv(filepath_645, data_645, '\t')
+        write_csv(filepath_1400, data_1400, '\t')
+        write_csv(filepath_2500, data_2500, '\t')
+        print(f"Generated random data for subject: {subject_number}")
 
 
 def get_adjacency_for_triangle(triangular_matrix, lower=True):

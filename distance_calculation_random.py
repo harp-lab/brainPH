@@ -1,11 +1,12 @@
 import argparse
 import json
 import os
+import csv
 import gudhi
 import gudhi.wasserstein
 import numpy as np
 from sklearn.manifold import MDS
-from utils import get_dataset, timer, generate_random_initial_dataset
+from utils import get_dataset, timer, generate_random_initial_dataset, write_csv, generate_random_data
 from barcodes_calculation import get_0_dim_barcodes
 
 
@@ -89,7 +90,7 @@ def compute_distances_between_cohorts(barcodes,
                                       start_subject=None,
                                       end_subject=None,
                                       distance_method='ws',
-                                      output_directory='output'):
+                                      output_directory='output_random'):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     if start_subject == None:
@@ -112,7 +113,7 @@ def compute_distances_between_cohorts(barcodes,
 @timer
 def compute_mds_within_a_cohort(barcodes, total_subjects, cohort,
                                 distance_method='ws', generate_file=True,
-                                output_directory='output'):
+                                output_directory='output_random'):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     cohort_name = {0: "mx645", 1: "mx1400", 2: "std2500"}[cohort]
@@ -183,24 +184,11 @@ def get_user_input():
 
 
 @timer
-def generate_random_data(random_data_dir):
-    if os.path.exists(random_data_dir):
-        print(f"Random data path: {random_data_dir} exists")
-        return
-    os.makedirs(random_data_dir)
-    for subject_number in range(1, 11):
-        filepath_645 = f'{random_data_dir}/subject_{subject_number}_mx645.txt'
-        filepath_1400 = f'{random_data_dir}/subject_{subject_number}_mx1400.txt'
-        filepath_2500 = f'{random_data_dir}/subject_{subject_number}_std2500.txt'
-
-
-
-@timer
 def main(method, start_subject=1, end_subject=316,
          distance_calculation='y', mds_calculation='y'):
-    data_directory = "full_data"
+    data_directory = "random_data"
     total_subjects = 316
-    barcodes = get_barcodes(data_directory, total_subjects)
+    barcodes = get_barcodes(data_directory, (end_subject - start_subject) + 1)
     if distance_calculation == 'y':
         compute_distances_between_cohorts(barcodes,
                                           total_subjects,
@@ -213,7 +201,6 @@ def main(method, start_subject=1, end_subject=316,
 
 
 if __name__ == "__main__":
+    generate_random_data("random_data", start_subject=1, end_subject=316)
     get_user_input()
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds n
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance n --mds y
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y
+    # python distance_calculation_random.py --method ws --start 1 --end 316 --distance y --mds y
