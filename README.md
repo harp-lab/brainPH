@@ -350,6 +350,12 @@ Cluster group: 101: #match: 32
 Cluster group: 110: #match: 42
 Cluster group: 111: #match: 56
 ```
+
+### To Do:
+- non-TDA experiments for within cohort and comparision across cohort
+- nonTDA on random for second pipeline
+- create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).
+
 ### References
 
 - [Rips complex user manual](https://gudhi.inria.fr/python/latest/rips_complex_user.html)
