@@ -78,7 +78,7 @@ def generate_kmeans_clusters(mx_645_mds_path,
     unique_labels_2500 = np.unique(labels_2500)
 
     cluster_info = [
-        n_clusters_2500, n_clusters_1400, n_clusters_645
+        n_clusters_645, n_clusters_1400, n_clusters_2500
     ]
     cluster_file = f"{output_directory}/clusters_{distance}.json"
     title = f'mx645: {n_clusters_645} clusters'
@@ -88,7 +88,7 @@ def generate_kmeans_clusters(mx_645_mds_path,
     else:
         plot_independent_figure(labels_645, unique_labels_645, dataset_mx_645,
                                 title, image_name)
-        print(f"Generated {image_name}")
+        # print(f"Generated {image_name}")
     title = f'mx1400: {n_clusters_1400} clusters'
     image_name = f"{output_directory}/clusters_mx1400_{distance}.png"
     if single_figure:
@@ -97,7 +97,7 @@ def generate_kmeans_clusters(mx_645_mds_path,
     else:
         plot_independent_figure(labels_1400, unique_labels_1400,
                                 dataset_mx_1400, title, image_name)
-        print(f"Generated {image_name}")
+        # print(f"Generated {image_name}")
     title = f'std2500: {n_clusters_2500} clusters'
     image_name = f"{output_directory}/clusters_std2500_{distance}.png"
     if single_figure:
@@ -111,7 +111,7 @@ def generate_kmeans_clusters(mx_645_mds_path,
     else:
         plot_independent_figure(labels_2500, unique_labels_2500,
                                 dataset_std_2500, title, image_name)
-    print(f"Generated {image_name}")
+    # print(f"Generated {image_name}")
 
     with open(cluster_file, "w") as json_file:
         json.dump(cluster_info, json_file)
@@ -138,60 +138,21 @@ def generate_random_distance_dataset(n, seed_value):
             data[i][j] = random_number
             data[j][i] = random_number
     return data
-    # return np.random.randint(1000, size=(n, n))
-
-
-def generate_random_kmeans_clusters(output_directory):
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
-    distance_matrix_mx_645 = generate_random_distance_dataset(316, 645)
-    distance_matrix_mx_1400 = generate_random_distance_dataset(316, 1400)
-    distance_matrix_std_2500 = generate_random_distance_dataset(316, 2500)
-    dataset_mx_645 = get_mds(distance_matrix_mx_645)
-    dataset_mx_1400 = get_mds(distance_matrix_mx_1400)
-    dataset_std_2500 = get_mds(distance_matrix_std_2500)
-    n_clusters_645, labels_645 = get_labels_highest_score(dataset_mx_645)
-    unique_labels_645 = np.unique(labels_645)
-    n_clusters_1400, labels_1400 = get_labels_highest_score(dataset_mx_1400)
-    unique_labels_1400 = np.unique(labels_1400)
-    n_clusters_2500, labels_2500 = get_labels_highest_score(dataset_std_2500)
-    unique_labels_2500 = np.unique(labels_2500)
-
-    cluster_info = [
-        n_clusters_2500, n_clusters_1400, n_clusters_645
-    ]
-    cluster_file = f"{output_directory}/clusters_random.json"
-    title = f'mx645 (random): {n_clusters_645} clusters'
-    image_name = f"{output_directory}/clusters_mx645_random.png"
-    plot_independent_figure(labels_645, unique_labels_645, dataset_mx_645,
-                            title, image_name)
-    print(f"Generated {image_name}")
-    title = f'mx1400 (random): {n_clusters_1400} clusters'
-    image_name = f"{output_directory}/clusters_mx1400_random.png"
-    plot_independent_figure(labels_1400, unique_labels_1400,
-                            dataset_mx_1400, title, image_name)
-    print(f"Generated {image_name}")
-    title = f'std2500 (random): {n_clusters_2500} clusters'
-    image_name = f"{output_directory}/clusters_std2500_random.png"
-    plot_independent_figure(labels_2500, unique_labels_2500,
-                            dataset_std_2500, title, image_name)
-    print(f"Generated {image_name}")
-
-    with open(cluster_file, "w") as json_file:
-        json.dump(cluster_info, json_file)
-    print(f"Generated {cluster_file}")
-
-    return cluster_info
 
 
 def get_cluster_subject_group(labels):
-    cluster = [[], []]
+    cluster = []
+    max_label = max([int(label) for label in labels]) + 1
+    for i in range(max_label):
+        cluster.append([])
+
     for i, label in enumerate(labels):
         cluster[label].append(i + 1)
     return cluster
 
 
-def show_matching_between_clusters(output_dir, cluster_645, cluster_1400, cluster_2500):
+def show_matching_between_clusters(output_dir, cluster_645, cluster_1400,
+                                   cluster_2500):
     cluster_group = {}
     for i in range(len(cluster_645)):
         for j in range(len(cluster_1400)):
@@ -227,16 +188,24 @@ def get_subjects_cluster_id(output_dir, mx_645_mds_path,
     cluster_645 = get_cluster_subject_group(labels_645)
     cluster_1400 = get_cluster_subject_group(labels_1400)
     cluster_2500 = get_cluster_subject_group(labels_2500)
-    show_matching_between_clusters(output_dir, cluster_645, cluster_1400, cluster_2500)
+    show_matching_between_clusters(output_dir, cluster_645, cluster_1400,
+                                   cluster_2500)
 
     print("\nAdjacency matrix:")
-    ar = [cluster_645[0], cluster_645[1], cluster_1400[0], cluster_1400[1],
-          cluster_2500[0], cluster_2500[1]]
-    matrix = [[0 for j in range(6)] for i in range(6)]
+    ar = []
+    for temp in cluster_645:
+        ar.append(temp)
+    for temp in cluster_1400:
+        ar.append(temp)
+    for temp in cluster_2500:
+        ar.append(temp)
+    matrix = [[0 for j in range(len(ar))] for i in range(len(ar))]
+
     for i in range(len(ar)):
         for j in range(len(ar)):
             matrix[i][j] = len(set(ar[i]).intersection(set(ar[j])))
     print(f"{output_dir}:")
+    print(f"Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]")
     for i in range(len(matrix)):
         for j in range(len(matrix)):
             print(matrix[i][j], end=" ")
@@ -245,7 +214,7 @@ def get_subjects_cluster_id(output_dir, mx_645_mds_path,
     adj_matrix_file = f"{output_dir}/clusters_adjancency.json"
     with open(adj_matrix_file, "w") as json_file:
         json.dump(matrix, json_file)
-    print(f"Generated {adj_matrix_file}")
+    print(f"Generated {adj_matrix_file}\n")
 
 
 @timer
@@ -261,17 +230,14 @@ def main():
         cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
                                                    mx_1400_mds_ws,
                                                    std_2500_mds_ws,
-                                                   output_directory, distance="ws",
+                                                   output_directory,
+                                                   distance="ws",
                                                    single_figure=False)
         print(
-            f"{output_directory}: Number of clusters in 3 cohorts: {cluster_summary}")
+            f"{output_directory}: Number of clusters in 3 cohorts (645ms, 1400ms, 2500ms): {cluster_summary}")
 
         get_subjects_cluster_id(output_directory, mx_645_mds_ws,
                                 mx_1400_mds_ws, std_2500_mds_ws)
-
-    # random_cluster_summary = generate_random_kmeans_clusters(output_dir)
-    # print(
-    #     f"Number of clusters in 3 cohorts (random): {random_cluster_summary}")
 
 
 if __name__ == "__main__":

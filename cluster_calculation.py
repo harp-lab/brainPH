@@ -158,7 +158,7 @@ def generate_random_kmeans_clusters(output_directory):
     unique_labels_2500 = np.unique(labels_2500)
 
     cluster_info = [
-        n_clusters_2500, n_clusters_1400, n_clusters_645
+        n_clusters_645, n_clusters_1400, n_clusters_2500
     ]
     cluster_file = f"{output_directory}/clusters_random.json"
     title = f'mx645 (random): {n_clusters_645} clusters'
@@ -219,8 +219,15 @@ def get_subjects_cluster_id(mx_645_mds_path,
     cluster_2500 = get_cluster_subject_group(labels_2500)
     # show_matching_between_clusters(cluster_645, cluster_1400, cluster_2500)
 
-    ar = [cluster_645[0], cluster_645[1], cluster_1400[0], cluster_1400[1], cluster_2500[0], cluster_2500[1]]
-    matrix = [[0 for j in range(6)]for i in range(6)]
+    print("\nAdjacency matrix:")
+    ar = []
+    for temp in cluster_645:
+        ar.append(temp)
+    for temp in cluster_1400:
+        ar.append(temp)
+    for temp in cluster_2500:
+        ar.append(temp)
+    matrix = [[0 for j in range(len(ar))] for i in range(len(ar))]
     for i in range(len(ar)):
         for j in range(len(ar)):
             matrix[i][j] = len(set(ar[i]).intersection(set(ar[j])))
