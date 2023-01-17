@@ -6,7 +6,7 @@ ssh ashovon@cheaha.rc.uab.edu
 ```
 - Change directory to the desired directory:
 ```
-cd brainph
+cd brainPH
 ```
 - Create a virtual environment to one directory up. 
 So, we can pull the current directory to local machine again without the venv files.

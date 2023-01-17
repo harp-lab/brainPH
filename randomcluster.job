@@ -12,4 +12,4 @@
 set -e
 source /home/ashovon/venvs/brainph/bin/activate
 
-python -u /home/ashovon/brainph/cluster_calculation_random.py
+python -u /home/ashovon/brainPH/cluster_calculation_random.py
