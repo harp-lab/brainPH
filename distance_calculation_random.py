@@ -6,7 +6,8 @@ import gudhi
 import gudhi.wasserstein
 import numpy as np
 from sklearn.manifold import MDS
-from utils import get_dataset, timer, generate_random_initial_dataset, write_csv, generate_random_data
+from utils import get_dataset, timer, generate_random_initial_dataset, \
+    write_csv, generate_random_data
 from barcodes_calculation import get_0_dim_barcodes
 
 
@@ -30,7 +31,7 @@ def get_barcodes_distance(dgm_1, dgm_2, distance_method='ws'):
 
 
 def get_barcodes_single_subject(data_dir, subject_number, manual=False):
-    print(f"Calculating barcodes for Subject {subject_number}")
+    # print(f"Calculating barcodes for Subject {subject_number}")
     filepath_645 = f'{data_dir}/subject_{subject_number}_mx645.txt'
     filepath_1400 = f'{data_dir}/subject_{subject_number}_mx1400.txt'
     filepath_2500 = f'{data_dir}/subject_{subject_number}_std2500.txt'
@@ -99,15 +100,15 @@ def compute_distances_between_cohorts(barcodes,
     generated_json = f'{output_directory}/distances_between_cohorts_{distance_method}.json'
     distances = []
     for subject_number in range(start_subject, end_subject + 1):
-        print(f"Calculating distances between cohorts "
-              f"for Subject {subject_number}")
+        # print(f"Calculating distances between cohorts "
+        #       f"for Subject {subject_number}")
         distances.append(get_distances(barcodes,
                                        subject_number,
                                        distance_method))
     with open(generated_json, "w") as f:
         json.dump(distances, f)
     print(
-        f"Done generating the {distance_method} JSON file between cohorts: {generated_json}")
+        f"{output_directory}: Done generating the {distance_method} JSON file between cohorts: {generated_json}")
 
 
 @timer
@@ -117,7 +118,7 @@ def compute_mds_within_a_cohort(barcodes, total_subjects, cohort,
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
     cohort_name = {0: "mx645", 1: "mx1400", 2: "std2500"}[cohort]
-    print(f"Calculating {distance_method} distance matrix "
+    print(f"{output_directory}: Calculating {distance_method} distance matrix "
           f"of {total_subjects} subjects for cohort {cohort_name}")
     dissimilarity_matrix = np.array([[0.0 for j in range(total_subjects)]
                                      for i in range(total_subjects)])
@@ -142,25 +143,29 @@ def compute_mds_within_a_cohort(barcodes, total_subjects, cohort,
         generated_matrix_file = f'{output_directory}/distance_matrix_{cohort_name}_{distance_method}.json'
         with open(generated_matrix_file, "w") as f:
             json.dump(dissimilarity_matrix.tolist(), f)
-            print(f"Done generating {generated_matrix_file}")
+            print(f"{output_directory}: Done generating {generated_matrix_file}")
         generated_mds_file = f'{output_directory}/mds_{cohort_name}_{distance_method}.json'
         with open(generated_mds_file, "w") as f:
             json.dump(mds_matrix.tolist(), f)
-            print(f"Done generating {generated_mds_file}")
+            print(f"{output_directory}: Done generating {generated_mds_file}")
 
 
 @timer
 def compute_mds_of_all_cohorts(barcodes, total_subjects,
-                               distance_method='ws'):
+                               distance_method='ws',
+                               output_directory="output_random"):
     compute_mds_within_a_cohort(barcodes, total_subjects, 0,
-                                distance_method)
+                                distance_method,
+                                output_directory=output_directory)
     compute_mds_within_a_cohort(barcodes, total_subjects, 1,
-                                distance_method)
+                                distance_method,
+                                output_directory=output_directory)
     compute_mds_within_a_cohort(barcodes, total_subjects, 2,
-                                distance_method)
+                                distance_method,
+                                output_directory=output_directory)
 
 
-def get_user_input():
+def get_user_input(random_data_dir):
     parser = argparse.ArgumentParser()
     parser.add_argument('--method', '-m',
                         help='Enter one of the distance method (ws, bn)')
@@ -178,15 +183,17 @@ def get_user_input():
         main(args.method, start_subject=int(args.start),
              end_subject=int(args.end),
              distance_calculation=args.distance,
-             mds_calculation=args.mds)
+             mds_calculation=args.mds, random_data_dir=random_data_dir)
         return
     parser.print_help()
 
 
 @timer
 def main(method, start_subject=1, end_subject=316,
-         distance_calculation='y', mds_calculation='y'):
-    data_directory = "random_data"
+         distance_calculation='y', mds_calculation='y',
+         random_data_dir="random_data"):
+    data_directory = random_data_dir
+    output_directory = "output_" + data_directory
     total_subjects = 316
     barcodes = get_barcodes(data_directory, (end_subject - start_subject) + 1)
     if distance_calculation == 'y':
@@ -194,13 +201,19 @@ def main(method, start_subject=1, end_subject=316,
                                           total_subjects,
                                           start_subject,
                                           end_subject,
-                                          distance_method=method)
+                                          distance_method=method,
+                                          output_directory=output_directory)
     if mds_calculation == 'y':
         compute_mds_of_all_cohorts(barcodes, total_subjects,
-                                   distance_method=method)
+                                   distance_method=method,
+                                   output_directory=output_directory)
 
 
 if __name__ == "__main__":
-    generate_random_data("random_data", start_subject=1, end_subject=316)
-    get_user_input()
+    for i in range(50):
+        experiment_number = i + 1
+        random_data_dir = f"random_data_" + str(experiment_number)
+        generate_random_data(random_data_dir, experiment_number,
+                             start_subject=1, end_subject=316)
+        get_user_input(random_data_dir)
     # python distance_calculation_random.py --method ws --start 1 --end 316 --distance y --mds y

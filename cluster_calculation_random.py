@@ -191,7 +191,7 @@ def get_cluster_subject_group(labels):
     return cluster
 
 
-def show_matching_between_clusters(cluster_645, cluster_1400, cluster_2500):
+def show_matching_between_clusters(output_dir, cluster_645, cluster_1400, cluster_2500):
     cluster_group = {}
     for i in range(len(cluster_645)):
         for j in range(len(cluster_1400)):
@@ -200,15 +200,22 @@ def show_matching_between_clusters(cluster_645, cluster_1400, cluster_2500):
                 total_matches = x.intersection(set(cluster_2500[k]))
                 group_id = f"{i}{j}{k}"
                 cluster_group[group_id] = total_matches
-    for i in cluster_group:
-        print(f"Cluster group: {i}: match: {cluster_group[i]}")
-    print("")
-
+    # for i in cluster_group:
+    #     print(f"Cluster group: {i}: match: {cluster_group[i]}")
+    # print("")
+    triplet = {}
+    print(f"{output_dir}:")
     for i in cluster_group:
         print(f"Cluster group: {i}: #match: {len(cluster_group[i])}")
+        triplet[i] = len(cluster_group[i])
+
+    triplet_file = f"{output_dir}/clusters_triplet.json"
+    with open(triplet_file, "w") as json_file:
+        json.dump(triplet, json_file, indent=4)
+    print(f"Generated {triplet_file}")
 
 
-def get_subjects_cluster_id(mx_645_mds_path,
+def get_subjects_cluster_id(output_dir, mx_645_mds_path,
                             mx_1400_mds_path,
                             std_2500_mds_path):
     dataset_mx_645 = get_dataset(mx_645_mds_path)
@@ -220,35 +227,47 @@ def get_subjects_cluster_id(mx_645_mds_path,
     cluster_645 = get_cluster_subject_group(labels_645)
     cluster_1400 = get_cluster_subject_group(labels_1400)
     cluster_2500 = get_cluster_subject_group(labels_2500)
-    show_matching_between_clusters(cluster_645, cluster_1400, cluster_2500)
+    show_matching_between_clusters(output_dir, cluster_645, cluster_1400, cluster_2500)
 
     print("\nAdjacency matrix:")
-    ar = [cluster_645[0], cluster_645[1], cluster_1400[0], cluster_1400[1], cluster_2500[0], cluster_2500[1]]
+    ar = [cluster_645[0], cluster_645[1], cluster_1400[0], cluster_1400[1],
+          cluster_2500[0], cluster_2500[1]]
     matrix = [[0 for j in range(6)] for i in range(6)]
     for i in range(len(ar)):
         for j in range(len(ar)):
             matrix[i][j] = len(set(ar[i]).intersection(set(ar[j])))
+    print(f"{output_dir}:")
     for i in range(len(matrix)):
         for j in range(len(matrix)):
             print(matrix[i][j], end=" ")
         print("")
+    print("")
+    adj_matrix_file = f"{output_dir}/clusters_adjancency.json"
+    with open(adj_matrix_file, "w") as json_file:
+        json.dump(matrix, json_file)
+    print(f"Generated {adj_matrix_file}")
 
 
 @timer
 def main():
-    mx_645_mds_ws = "output_random/mds_mx645_ws.json"
-    mx_1400_mds_ws = "output_random/mds_mx1400_ws.json"
-    std_2500_mds_ws = "output_random/mds_std2500_ws.json"
-    output_dir = "output_random"
+    for i in range(50):
+        experiment_number = i + 1
+        random_data_dir = f"random_data_" + str(experiment_number)
+        output_directory = "output_" + random_data_dir
+        mx_645_mds_ws = f"{output_directory}/mds_mx645_ws.json"
+        mx_1400_mds_ws = f"{output_directory}/mds_mx1400_ws.json"
+        std_2500_mds_ws = f"{output_directory}/mds_std2500_ws.json"
 
-    cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
-                                               mx_1400_mds_ws,
-                                               std_2500_mds_ws,
-                                               output_dir, distance="ws",
-                                               single_figure=False)
-    print(f"Number of clusters in 3 cohorts: {cluster_summary}")
+        cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
+                                                   mx_1400_mds_ws,
+                                                   std_2500_mds_ws,
+                                                   output_directory, distance="ws",
+                                                   single_figure=False)
+        print(
+            f"{output_directory}: Number of clusters in 3 cohorts: {cluster_summary}")
 
-    get_subjects_cluster_id(mx_645_mds_ws, mx_1400_mds_ws, std_2500_mds_ws)
+        get_subjects_cluster_id(output_directory, mx_645_mds_ws,
+                                mx_1400_mds_ws, std_2500_mds_ws)
 
     # random_cluster_summary = generate_random_kmeans_clusters(output_dir)
     # print(
