@@ -351,8 +351,8 @@ Cluster group: 110: #match: 42
 Cluster group: 111: #match: 56
 ```
 
-### Non TDA cluster generation (Real data)
-- Clustering result:
+## Non TDA cluster generation (Real data)
+### Clustering result (within cohort):
 ```shell
 python non_tda_cluster_calculation.py                                                      
 Generated output_non_tda/clusters_mx645_ed.png
@@ -388,8 +388,7 @@ Generated output_non_tda/clusters_adjancency.json
   - mx645: ![alt clusters_mx645_non_tda](output_non_tda/clusters_mx645_ed.png)
   - mx1400: ![alt clusters_mx1400_non_tda](output_non_tda/clusters_mx1400_ed.png)
   - std2500: ![alt clusters_std2500_non_tda](output_non_tda/clusters_std2500_ed.png)
-
-- Statistical analysis on non tda pipeline:
+### Statistical analysis on non tda pipeline (across cohort):
 ```shell
 python non_tda_statistical_calculation.py
 T-values:
@@ -410,8 +409,8 @@ cohort comparison are statistically **dissimilar**.
 | WD(P2, P3) | WD(P3, P1) | 0.000019 | 0.006077 |
 | WD(P3, P1) | WD(P1, P2) | 0.000000 | 0.000004 |
 
-### Non TDA cluster generation (Random data)
-- Clustering result:
+## Non TDA cluster generation (Random data)
+### Clustering result (within cohort) (random data):
 ```shell
 Number of clusters in 3 cohorts: [3, 3, 3]
 output_non_tda_random:
@@ -463,7 +462,7 @@ Generated output_non_tda_random/clusters_adjancency.json
   - mx645: ![alt clusters_mx645_non_tda_random](output_non_tda_random/clusters_mx645_ed.png)
   - mx1400: ![alt clusters_mx1400_non_tda_random](output_non_tda_random/clusters_mx1400_ed.png)
   - std2500: ![alt clusters_std2500_non_tda_random](output_non_tda_random/clusters_std2500_ed.png)
-- Statistical analysis on non tda pipeline:
+### Statistical analysis on non tda pipeline with random data (across cohort):
 ```shell
 python non_tda_random_statistical_calculation.py
 T-values:
@@ -490,7 +489,7 @@ cohort comparison are statistically **similar**.
 
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
-- [ ] nonTDA on random for second pipeline
+- [x] nonTDA on random for second pipeline
 - [ ] create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).
 
 ### References
