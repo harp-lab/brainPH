@@ -351,7 +351,7 @@ Cluster group: 110: #match: 42
 Cluster group: 111: #match: 56
 ```
 
-### Non TDA cluster generation
+### Non TDA cluster generation (Real data)
 - Clustering result:
 ```shell
 python non_tda_cluster_calculation.py                                                      
@@ -410,6 +410,83 @@ cohort comparison are statistically **dissimilar**.
 | WD(P2, P3) | WD(P3, P1) | 0.000019 | 0.006077 |
 | WD(P3, P1) | WD(P1, P2) | 0.000000 | 0.000004 |
 
+### Non TDA cluster generation (Random data)
+- Clustering result:
+```shell
+Number of clusters in 3 cohorts: [3, 3, 3]
+output_non_tda_random:
+Cluster group: 000: #match: 0
+Cluster group: 001: #match: 24
+Cluster group: 002: #match: 11
+Cluster group: 010: #match: 13
+Cluster group: 011: #match: 0
+Cluster group: 012: #match: 23
+Cluster group: 020: #match: 24
+Cluster group: 021: #match: 11
+Cluster group: 022: #match: 0
+Cluster group: 100: #match: 0
+Cluster group: 101: #match: 19
+Cluster group: 102: #match: 13
+Cluster group: 110: #match: 11
+Cluster group: 111: #match: 0
+Cluster group: 112: #match: 29
+Cluster group: 120: #match: 21
+Cluster group: 121: #match: 13
+Cluster group: 122: #match: 0
+Cluster group: 200: #match: 0
+Cluster group: 201: #match: 25
+Cluster group: 202: #match: 15
+Cluster group: 210: #match: 12
+Cluster group: 211: #match: 0
+Cluster group: 212: #match: 15
+Cluster group: 220: #match: 23
+Cluster group: 221: #match: 14
+Cluster group: 222: #match: 0
+Generated output_non_tda_random/clusters_triplet.json
+
+Adjacency matrix:
+output_non_tda_random:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+106 0 0 35 36 35 37 35 34 
+0 106 0 32 40 34 32 32 42 
+0 0 104 40 27 37 35 39 30 
+35 32 40 107 0 0 0 68 39 
+36 40 27 0 103 0 36 0 67 
+35 34 37 0 0 106 68 38 0 
+37 32 35 0 36 68 104 0 0 
+35 32 39 68 0 38 0 106 0 
+34 42 30 39 67 0 0 0 106 
+
+Generated output_non_tda_random/clusters_adjancency.json
+```
+- Clustering result for random data for all three cohorts using Euclidean distance (`np.linalg.norm`): 
+  - mx645: ![alt clusters_mx645_non_tda_random](output_non_tda_random/clusters_mx645_ed.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_random](output_non_tda_random/clusters_mx1400_ed.png)
+  - std2500: ![alt clusters_std2500_non_tda_random](output_non_tda_random/clusters_std2500_ed.png)
+- Statistical analysis on non tda pipeline:
+```shell
+python non_tda_random_statistical_calculation.py
+T-values:
+0.028809 0.559694 0.124023 
+P-values:
+0.045081 0.588588 0.155242 
+ANOVA test p-value: 0.122310
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the EDs between data cohorts. Since all p-values
+are **equal or larger** than 0.05, the means of ED distributions for each
+cohort comparison are statistically **similar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.028809 | 0.045081 |
+| WD(P2, P3) | WD(P3, P1) | 0.559694 | 0.588588 |
+| WD(P3, P1) | WD(P1, P2) | 0.124023 | 0.155242 |
+
+### Notes
+- Within cohort: clustering
+- Across cohorts: statistical analysis
 
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
