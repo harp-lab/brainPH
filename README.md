@@ -351,6 +351,45 @@ Cluster group: 110: #match: 42
 Cluster group: 111: #match: 56
 ```
 
+### Non TDA cluster generation
+```shell
+python non_tda_cluster_calculation.py                                                      
+Generated output_non_tda/clusters_mx645_ed.png
+Generated output_non_tda/clusters_mx1400_ed.png
+Generated output_non_tda/clusters_std2500_ed.png
+Generated output_non_tda/clusters_ed.json
+Number of clusters in 3 cohorts: [2, 2, 2]
+
+output_non_tda:
+Cluster group: 000: #match: 18
+Cluster group: 001: #match: 51
+Cluster group: 010: #match: 24
+Cluster group: 011: #match: 8
+Cluster group: 100: #match: 26
+Cluster group: 101: #match: 24
+Cluster group: 110: #match: 151
+Cluster group: 111: #match: 14
+Generated output_non_tda/clusters_triplet.json
+
+Adjacency matrix:
+output_non_tda:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+101 0 69 32 42 59 
+0 215 50 165 177 38 
+69 50 119 0 44 75 
+32 165 0 197 175 22 
+42 177 44 175 219 0 
+59 38 75 22 0 97 
+
+Generated output_non_tda/clusters_adjancency.json
+```
+- Clustering result for all three cohorts using Euclidean distance (`np.linalg.norm`): 
+  - mx645: ![alt clusters_mx645_non_tda](output_non_tda/clusters_mx645_ed.png)
+  - mx1400: ![alt clusters_mx1400_non_tda](output_non_tda/clusters_mx1400_ed.png)
+  - std2500: ![alt clusters_std2500_non_tda](output_non_tda/clusters_std2500_ed.png)
+
+
+
 ### To Do:
 - non-TDA experiments for within cohort and comparision across cohort
 - nonTDA on random for second pipeline
