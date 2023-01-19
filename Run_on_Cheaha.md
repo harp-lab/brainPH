@@ -60,3 +60,7 @@ srun --ntasks=4 --cpus-per-task=6 --mem-per-cpu=8192 --time=50:00:00 --partition
 ```shell
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPH/random_data_1 .
 ```
+- Upload a file from local directory to Cheaha
+```shell
+scp timeseries.Yeo2011.mm316.mat ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/
+```

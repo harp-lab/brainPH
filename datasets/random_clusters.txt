@@ -1,0 +1,440 @@
+Cluster group: 000: #match: 35
+Cluster group: 001: #match: 38
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 43
+Cluster group: 100: #match: 36
+Cluster group: 101: #match: 32
+Cluster group: 110: #match: 42
+Cluster group: 111: #match: 56
+
+Cluster group: 000: #match: 41
+Cluster group: 001: #match: 36
+Cluster group: 010: #match: 36
+Cluster group: 011: #match: 36
+Cluster group: 100: #match: 33
+Cluster group: 101: #match: 61
+Cluster group: 110: #match: 38
+Cluster group: 111: #match: 35
+
+Cluster group: 000: #match: 34
+Cluster group: 001: #match: 47
+Cluster group: 010: #match: 33
+Cluster group: 011: #match: 31
+Cluster group: 100: #match: 56
+Cluster group: 101: #match: 34
+Cluster group: 110: #match: 45
+Cluster group: 111: #match: 36
+
+Cluster group: 000: #match: 38
+Cluster group: 001: #match: 37
+Cluster group: 010: #match: 31
+Cluster group: 011: #match: 61
+Cluster group: 100: #match: 33
+Cluster group: 101: #match: 30
+Cluster group: 110: #match: 45
+Cluster group: 111: #match: 41
+
+Cluster group: 000: #match: 51
+Cluster group: 001: #match: 48
+Cluster group: 010: #match: 35
+Cluster group: 011: #match: 46
+Cluster group: 100: #match: 39
+Cluster group: 101: #match: 38
+Cluster group: 110: #match: 28
+Cluster group: 111: #match: 31
+
+Cluster group: 000: #match: 37
+Cluster group: 001: #match: 36
+Cluster group: 010: #match: 37
+Cluster group: 011: #match: 28
+Cluster group: 100: #match: 60
+Cluster group: 101: #match: 37
+Cluster group: 110: #match: 47
+Cluster group: 111: #match: 34
+
+Cluster group: 000: #match: 45
+Cluster group: 001: #match: 35
+Cluster group: 010: #match: 54
+Cluster group: 011: #match: 39
+Cluster group: 100: #match: 34
+Cluster group: 101: #match: 30
+Cluster group: 110: #match: 44
+Cluster group: 111: #match: 35
+
+Cluster group: 000: #match: 57
+Cluster group: 001: #match: 41
+Cluster group: 010: #match: 40
+Cluster group: 011: #match: 39
+Cluster group: 100: #match: 39
+Cluster group: 101: #match: 44
+Cluster group: 110: #match: 25
+Cluster group: 111: #match: 31
+
+Cluster group: 000: #match: 33
+Cluster group: 001: #match: 56
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 42
+Cluster group: 100: #match: 53
+Cluster group: 101: #match: 50
+Cluster group: 110: #match: 24
+Cluster group: 111: #match: 24
+
+Cluster group: 000: #match: 51
+Cluster group: 001: #match: 34
+Cluster group: 010: #match: 50
+Cluster group: 011: #match: 47
+Cluster group: 100: #match: 29
+Cluster group: 101: #match: 34
+Cluster group: 110: #match: 35
+Cluster group: 111: #match: 36
+
+Cluster group: 000: #match: 37
+Cluster group: 001: #match: 32
+Cluster group: 010: #match: 48
+Cluster group: 011: #match: 45
+Cluster group: 100: #match: 33
+Cluster group: 101: #match: 32
+Cluster group: 110: #match: 42
+Cluster group: 111: #match: 47
+
+Cluster group: 000: #match: 64
+Cluster group: 001: #match: 35
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 41
+Cluster group: 100: #match: 29
+Cluster group: 101: #match: 53
+Cluster group: 110: #match: 39
+Cluster group: 111: #match: 21
+
+Cluster group: 000: #match: 48
+Cluster group: 001: #match: 40
+Cluster group: 010: #match: 55
+Cluster group: 011: #match: 35
+Cluster group: 100: #match: 37
+Cluster group: 101: #match: 35
+Cluster group: 110: #match: 38
+Cluster group: 111: #match: 28
+
+Cluster group: 000: #match: 41
+Cluster group: 001: #match: 48
+Cluster group: 010: #match: 28
+Cluster group: 011: #match: 32
+Cluster group: 100: #match: 34
+Cluster group: 101: #match: 48
+Cluster group: 110: #match: 37
+Cluster group: 111: #match: 48
+
+Cluster group: 000: #match: 26
+Cluster group: 001: #match: 28
+Cluster group: 010: #match: 37
+Cluster group: 011: #match: 45
+Cluster group: 100: #match: 45
+Cluster group: 101: #match: 51
+Cluster group: 110: #match: 33
+Cluster group: 111: #match: 51
+
+Cluster group: 000: #match: 45
+Cluster group: 001: #match: 32
+Cluster group: 010: #match: 49
+Cluster group: 011: #match: 45
+Cluster group: 100: #match: 42
+Cluster group: 101: #match: 36
+Cluster group: 110: #match: 39
+Cluster group: 111: #match: 28
+
+Cluster group: 000: #match: 38
+Cluster group: 001: #match: 48
+Cluster group: 010: #match: 37
+Cluster group: 011: #match: 46
+Cluster group: 100: #match: 36
+Cluster group: 101: #match: 43
+Cluster group: 110: #match: 28
+Cluster group: 111: #match: 40
+
+Cluster group: 000: #match: 37
+Cluster group: 001: #match: 23
+Cluster group: 010: #match: 39
+Cluster group: 011: #match: 41
+Cluster group: 100: #match: 43
+Cluster group: 101: #match: 37
+Cluster group: 110: #match: 59
+Cluster group: 111: #match: 37
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 34
+Cluster group: 010: #match: 29
+Cluster group: 011: #match: 39
+Cluster group: 100: #match: 40
+Cluster group: 101: #match: 50
+Cluster group: 110: #match: 41
+Cluster group: 111: #match: 47
+
+Cluster group: 000: #match: 56
+Cluster group: 001: #match: 39
+Cluster group: 010: #match: 41
+Cluster group: 011: #match: 35
+Cluster group: 100: #match: 48
+Cluster group: 101: #match: 35
+Cluster group: 110: #match: 37
+Cluster group: 111: #match: 25
+
+Cluster group: 000: #match: 43
+Cluster group: 001: #match: 38
+Cluster group: 010: #match: 45
+Cluster group: 011: #match: 38
+Cluster group: 100: #match: 44
+Cluster group: 101: #match: 27
+Cluster group: 110: #match: 44
+Cluster group: 111: #match: 37
+
+Cluster group: 000: #match: 48
+Cluster group: 001: #match: 41
+Cluster group: 010: #match: 47
+Cluster group: 011: #match: 37
+Cluster group: 100: #match: 32
+Cluster group: 101: #match: 25
+Cluster group: 110: #match: 38
+Cluster group: 111: #match: 48
+
+Cluster group: 000: #match: 51
+Cluster group: 001: #match: 41
+Cluster group: 010: #match: 22
+Cluster group: 011: #match: 33
+Cluster group: 100: #match: 35
+Cluster group: 101: #match: 63
+Cluster group: 110: #match: 34
+Cluster group: 111: #match: 37
+
+Cluster group: 000: #match: 34
+Cluster group: 001: #match: 31
+Cluster group: 010: #match: 32
+Cluster group: 011: #match: 50
+Cluster group: 100: #match: 34
+Cluster group: 101: #match: 41
+Cluster group: 110: #match: 41
+Cluster group: 111: #match: 53
+
+Cluster group: 000: #match: 41
+Cluster group: 001: #match: 32
+Cluster group: 010: #match: 44
+Cluster group: 011: #match: 44
+Cluster group: 100: #match: 44
+Cluster group: 101: #match: 32
+Cluster group: 110: #match: 45
+Cluster group: 111: #match: 34
+
+Cluster group: 000: #match: 34
+Cluster group: 001: #match: 26
+Cluster group: 010: #match: 40
+Cluster group: 011: #match: 32
+Cluster group: 100: #match: 43
+Cluster group: 101: #match: 40
+Cluster group: 110: #match: 62
+Cluster group: 111: #match: 39
+
+Cluster group: 000: #match: 49
+Cluster group: 001: #match: 37
+Cluster group: 010: #match: 33
+Cluster group: 011: #match: 24
+Cluster group: 100: #match: 58
+Cluster group: 101: #match: 32
+Cluster group: 110: #match: 50
+Cluster group: 111: #match: 33
+
+Cluster group: 000: #match: 54
+Cluster group: 001: #match: 56
+Cluster group: 010: #match: 36
+Cluster group: 011: #match: 33
+Cluster group: 100: #match: 26
+Cluster group: 101: #match: 46
+Cluster group: 110: #match: 35
+Cluster group: 111: #match: 30
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 57
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 47
+Cluster group: 100: #match: 38
+Cluster group: 101: #match: 51
+Cluster group: 110: #match: 23
+Cluster group: 111: #match: 30
+
+Cluster group: 000: #match: 23
+Cluster group: 001: #match: 41
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 45
+Cluster group: 100: #match: 32
+Cluster group: 101: #match: 38
+Cluster group: 110: #match: 50
+Cluster group: 111: #match: 53
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 41
+Cluster group: 010: #match: 42
+Cluster group: 011: #match: 27
+Cluster group: 100: #match: 55
+Cluster group: 101: #match: 30
+Cluster group: 110: #match: 47
+Cluster group: 111: #match: 38
+
+Cluster group: 000: #match: 45
+Cluster group: 001: #match: 42
+Cluster group: 010: #match: 25
+Cluster group: 011: #match: 36
+Cluster group: 100: #match: 38
+Cluster group: 101: #match: 60
+Cluster group: 110: #match: 39
+Cluster group: 111: #match: 31
+
+Cluster group: 000: #match: 45
+Cluster group: 001: #match: 54
+Cluster group: 010: #match: 57
+Cluster group: 011: #match: 29
+Cluster group: 100: #match: 39
+Cluster group: 101: #match: 29
+Cluster group: 110: #match: 37
+Cluster group: 111: #match: 26
+
+Cluster group: 000: #match: 28
+Cluster group: 001: #match: 22
+Cluster group: 010: #match: 49
+Cluster group: 011: #match: 38
+Cluster group: 100: #match: 51
+Cluster group: 101: #match: 37
+Cluster group: 110: #match: 56
+Cluster group: 111: #match: 35
+
+Cluster group: 000: #match: 47
+Cluster group: 001: #match: 68
+Cluster group: 010: #match: 33
+Cluster group: 011: #match: 38
+Cluster group: 100: #match: 38
+Cluster group: 101: #match: 35
+Cluster group: 110: #match: 23
+Cluster group: 111: #match: 34
+
+Cluster group: 000: #match: 38
+Cluster group: 001: #match: 25
+Cluster group: 010: #match: 47
+Cluster group: 011: #match: 37
+Cluster group: 100: #match: 36
+Cluster group: 101: #match: 38
+Cluster group: 110: #match: 57
+Cluster group: 111: #match: 38
+
+Cluster group: 000: #match: 45
+Cluster group: 001: #match: 35
+Cluster group: 010: #match: 31
+Cluster group: 011: #match: 35
+Cluster group: 100: #match: 53
+Cluster group: 101: #match: 39
+Cluster group: 110: #match: 42
+Cluster group: 111: #match: 36
+
+Cluster group: 000: #match: 44
+Cluster group: 001: #match: 39
+Cluster group: 010: #match: 50
+Cluster group: 011: #match: 47
+Cluster group: 100: #match: 31
+Cluster group: 101: #match: 26
+Cluster group: 110: #match: 41
+Cluster group: 111: #match: 38
+
+Cluster group: 000: #match: 21
+Cluster group: 001: #match: 30
+Cluster group: 010: #match: 37
+Cluster group: 011: #match: 51
+Cluster group: 100: #match: 29
+Cluster group: 101: #match: 44
+Cluster group: 110: #match: 53
+Cluster group: 111: #match: 51
+
+Cluster group: 000: #match: 53
+Cluster group: 001: #match: 34
+Cluster group: 010: #match: 38
+Cluster group: 011: #match: 25
+Cluster group: 100: #match: 48
+Cluster group: 101: #match: 40
+Cluster group: 110: #match: 52
+Cluster group: 111: #match: 26
+
+Cluster group: 000: #match: 31
+Cluster group: 001: #match: 38
+Cluster group: 010: #match: 33
+Cluster group: 011: #match: 58
+Cluster group: 100: #match: 37
+Cluster group: 101: #match: 34
+Cluster group: 110: #match: 40
+Cluster group: 111: #match: 45
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 49
+Cluster group: 010: #match: 33
+Cluster group: 011: #match: 45
+Cluster group: 100: #match: 43
+Cluster group: 101: #match: 40
+Cluster group: 110: #match: 38
+Cluster group: 111: #match: 32
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 52
+Cluster group: 010: #match: 35
+Cluster group: 011: #match: 35
+Cluster group: 100: #match: 47
+Cluster group: 101: #match: 40
+Cluster group: 110: #match: 34
+Cluster group: 111: #match: 37
+
+Cluster group: 000: #match: 24
+Cluster group: 001: #match: 25
+Cluster group: 010: #match: 53
+Cluster group: 011: #match: 34
+Cluster group: 100: #match: 40
+Cluster group: 101: #match: 37
+Cluster group: 110: #match: 58
+Cluster group: 111: #match: 45
+
+Cluster group: 000: #match: 44
+Cluster group: 001: #match: 37
+Cluster group: 010: #match: 28
+Cluster group: 011: #match: 37
+Cluster group: 100: #match: 42
+Cluster group: 101: #match: 41
+Cluster group: 110: #match: 46
+Cluster group: 111: #match: 41
+
+Cluster group: 000: #match: 37
+Cluster group: 001: #match: 44
+Cluster group: 010: #match: 26
+Cluster group: 011: #match: 27
+Cluster group: 100: #match: 44
+Cluster group: 101: #match: 54
+Cluster group: 110: #match: 44
+Cluster group: 111: #match: 40
+
+Cluster group: 000: #match: 36
+Cluster group: 001: #match: 54
+Cluster group: 010: #match: 39
+Cluster group: 011: #match: 39
+Cluster group: 100: #match: 40
+Cluster group: 101: #match: 45
+Cluster group: 110: #match: 20
+Cluster group: 111: #match: 43
+
+Cluster group: 000: #match: 49
+Cluster group: 001: #match: 34
+Cluster group: 010: #match: 48
+Cluster group: 011: #match: 40
+Cluster group: 100: #match: 49
+Cluster group: 101: #match: 28
+Cluster group: 110: #match: 41
+Cluster group: 111: #match: 27
+
+Cluster group: 000: #match: 56
+Cluster group: 001: #match: 31
+Cluster group: 010: #match: 36
+Cluster group: 011: #match: 25
+Cluster group: 100: #match: 57
+Cluster group: 101: #match: 46
+Cluster group: 110: #match: 38
+Cluster group: 111: #match: 27

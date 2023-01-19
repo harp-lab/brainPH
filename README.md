@@ -483,14 +483,21 @@ cohort comparison are statistically **similar**.
 | WD(P2, P3) | WD(P3, P1) | 0.559694 | 0.588588 |
 | WD(P3, P1) | WD(P1, P2) | 0.124023 | 0.155242 |
 
+### Mean and standard deviation of random clusters (49 out of 50)
+```shell
+Mean value of (Max + Reverse): 84.06122448979592
+Standard deviation value of (Max + Reverse): 5.738786759358441
+```
+
 ### Notes
 - Within cohort: clustering
 - Across cohorts: statistical analysis
+- Original dataset: [timeseries.Yeo2011.mm316.mat](full_data/timeseries.Yeo2011.mm316.mat)
 
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
 - [x] nonTDA on random for second pipeline
-- [ ] create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).
+- [x] ~~create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).~~: **The original matlab data file does not have any negative value. Checked using [negative_check.m file](matlab/negative_check.m)**
 
 ### References
 
