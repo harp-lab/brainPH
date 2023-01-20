@@ -298,6 +298,8 @@ Cluster group: 101: #match: 25
 Cluster group: 110: #match: 134
 Cluster group: 111: #match: 6
 
+Max + rev = 134 + 60 = 194
+
 Cluster group: 000: #match: {264, 140, 13, 268, 159, 289, 295, 168, 170, 298, 174, 49, 54, 182, 57, 314, 69, 74, 78, 92, 105, 110, 113, 242, 120, 125}
 Cluster group: 001: #match: {128, 130, 3, 132, 5, 134, 7, 12, 14, 16, 145, 147, 275, 21, 280, 154, 285, 158, 35, 165, 38, 39, 40, 173, 302, 47, 303, 304, 179, 52, 53, 308, 309, 311, 185, 186, 312, 316, 191, 194, 197, 199, 73, 204, 206, 207, 84, 212, 86, 213, 216, 94, 95, 223, 228, 101, 230, 248, 253, 127}
 Cluster group: 010: #match: {256, 9, 10, 266, 273, 18, 274, 277, 23, 163, 292, 37, 45, 301, 307, 181, 315, 60, 80, 208, 82, 87}
@@ -489,7 +491,8 @@ Mean value of (Max + Reverse): 84.06122448979592
 Standard deviation value of (Max + Reverse): 5.738786759358441
 ```
 
-### Clustering on positive dataset
+## TDA cluster generation (positive data)
+### Clustering result (within cohort):
 ```shell
 Generated output_positive/clusters_mx645_ws.png
 Generated output_positive/clusters_mx1400_ws.png
@@ -507,6 +510,8 @@ Cluster group: 110: #match: 134
 Cluster group: 111: #match: 6
 Generated output_positive/clusters_triplet.json
 
+Max + rev = 134 + 61 = 195
+
 Adjacency matrix:
 output_positive:
 Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
@@ -521,8 +526,32 @@ Generated output_positive/clusters_adjancency.json
 
 Method main executed in 5.2614 seconds
 ```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_positive](output_positive/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_positive](output_positive/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_non_tda_positive](output_positive/clusters_std2500_ws.png)
+### Statistical analysis on tda pipeline with positive data (across cohort):
+```shell
+T-values:
+0.092487 0.023553 0.464024 
+P-values:
+0.129347 0.059304 0.572871 
+ANOVA test p-value: 0.128747
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **equal or larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **similar**.
 
-### Clustering on negative dataset
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.092487 | 0.129347 |
+| WD(P2, P3) | WD(P3, P1) | 0.023553 | 0.059304 |
+| WD(P3, P1) | WD(P1, P2) | 0.464024 | 0.572871 |
+
+## TDA cluster generation (negative data)
+### Clustering result (within cohort):
 ```shell
 Generated output_negative/clusters_mx645_ws.png
 Generated output_negative/clusters_mx1400_ws.png
@@ -559,6 +588,31 @@ Generated output_negative/clusters_adjancency.json
 
 Method main executed in 5.7617 seconds
 ```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_negative](output_negative/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_negative](output_negative/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_non_tda_negative](output_negative/clusters_std2500_ws.png)
+
+### Statistical analysis on tda pipeline with negative data (across cohort):
+```shell
+python statistical_calculation_positive_negative.py
+T-values:
+0.000003 0.004331 0.000000 
+P-values:
+0.000012 0.110220 0.000000 
+ANOVA test p-value: 0.000000
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **not equal or larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **dissimilar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.000003 | 0.000012 |
+| WD(P2, P3) | WD(P3, P1) | 0.004331 | 0.110220 |
+| WD(P3, P1) | WD(P1, P2) | 0.000000 | 0.000000 |
 
 ### Notes
 - Within cohort: clustering
