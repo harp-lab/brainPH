@@ -89,13 +89,13 @@ def compute_distances_between_cohorts(barcodes,
                                       start_subject=None,
                                       end_subject=None,
                                       distance_method='ws',
-                                      output_directory='output'):
-    if not os.path.exists(output_directory):
-        os.makedirs(output_directory)
+                                      data_dir="full_data", output_dir="output"):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
     if start_subject == None:
         start_subject = 1
         end_subject = total_subjects
-    generated_json = f'{output_directory}/distances_between_cohorts_{distance_method}.json'
+    generated_json = f'{output_dir}/distances_between_cohorts_{distance_method}.json'
     distances = []
     for subject_number in range(start_subject, end_subject + 1):
         print(f"Calculating distances between cohorts "
@@ -150,13 +150,13 @@ def compute_mds_within_a_cohort(barcodes, total_subjects, cohort,
 
 @timer
 def compute_mds_of_all_cohorts(barcodes, total_subjects,
-                               distance_method='ws'):
+                               distance_method='ws', data_dir="full_data", output_dir="output"):
     compute_mds_within_a_cohort(barcodes, total_subjects, 0,
-                                distance_method)
+                                distance_method, output_directory=output_dir)
     compute_mds_within_a_cohort(barcodes, total_subjects, 1,
-                                distance_method)
+                                distance_method, output_directory=output_dir)
     compute_mds_within_a_cohort(barcodes, total_subjects, 2,
-                                distance_method)
+                                distance_method, output_directory=output_dir)
 
 
 def get_user_input():
@@ -171,36 +171,44 @@ def get_user_input():
                         help='To calculate distance matrix (y or n)')
     parser.add_argument('--mds', '-q',
                         help='To calculate MDS (y or n)')
-
+    parser.add_argument('--data_dir', '-d',
+                        help='Enter input data folder (e.g. full_data)')
+    parser.add_argument('--output_dir', '-o',
+                        help='Enter output data folder (e.g. output)')
     args = parser.parse_args()
     if args.start:
         main(args.method, start_subject=int(args.start),
              end_subject=int(args.end),
              distance_calculation=args.distance,
-             mds_calculation=args.mds)
+             mds_calculation=args.mds,
+             data_dir=args.data_dir,
+             output_dir=args.output_dir)
         return
     parser.print_help()
 
 
 @timer
 def main(method, start_subject=1, end_subject=316,
-         distance_calculation='y', mds_calculation='y'):
-    data_directory = "full_data"
+         distance_calculation='y', mds_calculation='y', data_dir="full_data", output_dir="output"):
     total_subjects = 316
-    barcodes = get_barcodes(data_directory, total_subjects)
+    barcodes = get_barcodes(data_dir, total_subjects)
     if distance_calculation == 'y':
         compute_distances_between_cohorts(barcodes,
                                           total_subjects,
                                           start_subject,
                                           end_subject,
-                                          distance_method=method)
+                                          distance_method=method,
+                                          data_dir=data_dir,
+                                          output_dir=output_dir)
     if mds_calculation == 'y':
         compute_mds_of_all_cohorts(barcodes, total_subjects,
-                                   distance_method=method)
+                                   distance_method=method,
+                                   data_dir=data_dir,
+                                   output_dir=output_dir)
 
 
 if __name__ == "__main__":
     get_user_input()
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds n
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance n --mds y
-    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_positive --output_dir output_positive
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds n --data_dir full_data_positive --output_dir output_positive
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance n --mds y --data_dir full_data_positive --output_dir output_positive

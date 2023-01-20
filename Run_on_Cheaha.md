@@ -59,6 +59,8 @@ srun --ntasks=4 --cpus-per-task=6 --mem-per-cpu=8192 --time=50:00:00 --partition
 - Download all files from Cheaha directory to local:
 ```shell
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPH/random_data_1 .
+scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/full_data_positive .
+scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/full_data_negative .
 ```
 - Upload a file from local directory to Cheaha
 ```shell

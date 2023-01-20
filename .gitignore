@@ -111,3 +111,5 @@ clusters_kmeans/
 clusters_kmeans_bn/
 random_data/
 random_data_1/
+full_data_positive/
+full_data_negative/
