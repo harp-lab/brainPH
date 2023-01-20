@@ -489,6 +489,77 @@ Mean value of (Max + Reverse): 84.06122448979592
 Standard deviation value of (Max + Reverse): 5.738786759358441
 ```
 
+### Clustering on positive dataset
+```shell
+Generated output_positive/clusters_mx645_ws.png
+Generated output_positive/clusters_mx1400_ws.png
+Generated output_positive/clusters_std2500_ws.png
+Generated output_positive/clusters_ws.json
+Number of clusters in 3 cohorts: [2, 2, 2]
+output_positive:
+Cluster group: 000: #match: 26
+Cluster group: 001: #match: 61
+Cluster group: 010: #match: 22
+Cluster group: 011: #match: 2
+Cluster group: 100: #match: 40
+Cluster group: 101: #match: 25
+Cluster group: 110: #match: 134
+Cluster group: 111: #match: 6
+Generated output_positive/clusters_triplet.json
+
+Adjacency matrix:
+output_positive:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+111 0 87 24 48 63 
+0 205 65 140 174 31 
+87 65 152 0 66 86 
+24 140 0 164 156 8 
+48 174 66 156 222 0 
+63 31 86 8 0 94 
+
+Generated output_positive/clusters_adjancency.json
+
+Method main executed in 5.2614 seconds
+```
+
+### Clustering on negative dataset
+```shell
+Generated output_negative/clusters_mx645_ws.png
+Generated output_negative/clusters_mx1400_ws.png
+Generated output_negative/clusters_std2500_ws.png
+Generated output_negative/clusters_ws.json
+Number of clusters in 3 cohorts: [3, 2, 2]
+output_negative:
+Cluster group: 000: #match: 20
+Cluster group: 001: #match: 124
+Cluster group: 010: #match: 12
+Cluster group: 011: #match: 14
+Cluster group: 100: #match: 23
+Cluster group: 101: #match: 46
+Cluster group: 110: #match: 24
+Cluster group: 111: #match: 19
+Cluster group: 200: #match: 8
+Cluster group: 201: #match: 7
+Cluster group: 210: #match: 16
+Cluster group: 211: #match: 3
+Generated output_negative/clusters_triplet.json
+
+Adjacency matrix:
+output_negative:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+170 0 0 144 26 32 138 
+0 112 0 69 43 47 65 
+0 0 34 15 19 24 10 
+144 69 15 228 0 51 177 
+26 43 19 0 88 52 36 
+32 47 24 51 52 103 0 
+138 65 10 177 36 0 213 
+
+Generated output_negative/clusters_adjancency.json
+
+Method main executed in 5.7617 seconds
+```
+
 ### Notes
 - Within cohort: clustering
 - Across cohorts: statistical analysis
@@ -497,7 +568,7 @@ Standard deviation value of (Max + Reverse): 5.738786759358441
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
 - [x] nonTDA on random for second pipeline
-- [x] ~~create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).~~: **The original matlab data file does not have any negative value. Checked using [negative_check.m file](matlab/negative_check.m)**
+- [x] create two matrices one for positive values and one for negative values and apply the distance function on them. Since, this will be a lot of experiments, if we do this for everything, let us just start by doing with only pipeline 1 (box plots, p/t-value tests).  the original mat file which we normalized using matlab. 113 x 113 with all positive (padded by 0) and 113 x 113 with all negative (padded by 0).
 
 ### References
 

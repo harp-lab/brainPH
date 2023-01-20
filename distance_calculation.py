@@ -209,6 +209,7 @@ def main(method, start_subject=1, end_subject=316,
 
 if __name__ == "__main__":
     get_user_input()
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_negative --output_dir output_negative
     # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_positive --output_dir output_positive
     # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds n --data_dir full_data_positive --output_dir output_positive
     # python distance_calculation.py --method ws --start 1 --end 316 --distance n --mds y --data_dir full_data_positive --output_dir output_positive
