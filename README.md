@@ -614,13 +614,135 @@ cohort comparison are statistically **dissimilar**.
 | WD(P2, P3) | WD(P3, P1) | 0.004331 | 0.110220 |
 | WD(P3, P1) | WD(P1, P2) | 0.000000 | 0.000000 |
 
+
+
+## TDA cluster generation (linear data)
+### Clustering result (within cohort):
+```shell
+python cluster_calculation.py --output_dir output_linear
+
+Number of clusters in 3 cohorts: [2, 2, 2]
+output_linear:
+Cluster group: 000: #match: 24
+Cluster group: 001: #match: 7
+Cluster group: 010: #match: 26
+Cluster group: 011: #match: 83
+Cluster group: 100: #match: 115
+Cluster group: 101: #match: 12
+Cluster group: 110: #match: 20
+Cluster group: 111: #match: 29
+
+Max + reverse: 115 + 83 = 198
+
+Adjacency matrix:
+output_linear:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+140 0 31 109 50 90 
+0 176 127 49 135 41 
+31 127 158 0 139 19 
+109 49 0 158 46 112 
+50 135 139 46 185 0 
+90 41 19 112 0 131 
+```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_linear](output_linear/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_linear](output_linear/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_non_tda_linear](output_linear/clusters_std2500_ws.png)
+### Statistical analysis on tda pipeline with linear data (across cohort):
+```shell
+python statistical_calculation_linear.py --output_dir output_linear
+T-values:
+0.059044 0.459634 0.286013 
+P-values:
+0.088131 0.518936 0.387180 
+ANOVA test p-value: 0.289941
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **similar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.059044 | 0.088131 |
+| WD(P2, P3) | WD(P3, P1) | 0.459634 | 0.518936 |
+| WD(P3, P1) | WD(P1, P2) | 0.286013 | 0.387180 |
+
+
+
+## TDA cluster generation (positive linear data)
+### Clustering result (within cohort):
+```shell
+python cluster_calculation.py --output_dir output_positive_linear
+Number of clusters in 3 cohorts: [2, 2, 2]
+output_positive_linear:
+Cluster group: 000: #match: 24
+Cluster group: 001: #match: 7
+Cluster group: 010: #match: 26
+Cluster group: 011: #match: 83
+Cluster group: 100: #match: 115
+Cluster group: 101: #match: 12
+Cluster group: 110: #match: 20
+Cluster group: 111: #match: 29
+
+Max + reverse: 115 + 83 = 198
+
+Adjacency matrix:
+output_positive_linear:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+140 0 31 109 50 90 
+0 176 127 49 135 41 
+31 127 158 0 139 19 
+109 49 0 158 46 112 
+50 135 139 46 185 0 
+90 41 19 112 0 131 
+
+```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_positive](output_positive_linear/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_positive](output_positive_linear/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_non_tda_positive](output_positive_linear/clusters_std2500_ws.png)
+### Statistical analysis on tda pipeline with positive linear data (across cohort):
+```shell
+python statistical_calculation_linear.py --output_dir output_positive_linear
+T-values:
+0.059466 0.460986 0.286332 
+P-values:
+0.088657 0.520177 0.387527 
+ANOVA test p-value: 0.291106
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **similar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.059466 | 0.088657 |
+| WD(P2, P3) | WD(P3, P1) | 0.460986 | 0.520177 |
+| WD(P3, P1) | WD(P1, P2) | 0.286332 | 0.387527 |
+
+
+
 ### Notes
 - Within cohort: clustering
 - Across cohorts: statistical analysis
 - Original dataset: [timeseries.Yeo2011.mm316.mat](full_data/timeseries.Yeo2011.mm316.mat)
 - Total negative in correlation coefficient: 1234732 from [all_positive_linear.m](matlab/all_positive_linear.m)
 - Total positive in correlation coefficient: 10870280 from [all_negative_linear.m](matlab/all_negative_linear.m)
-
+- Negative linear distance calculation:
+```shell
+brainPH/venv/lib/python3.10/site-packages/sklearn/manifold/_mds.py:130: RuntimeWarning: divide by zero encountered in double_scalars
+  old_stress = stress / dis
+brainPH/venv/lib/python3.10/site-packages/sklearn/manifold/_mds.py:125: RuntimeWarning: invalid value encountered in double_scalars
+  if(old_stress - stress / dis) < eps:
+  
+File "brainPH/venv/lib/python3.10/site-packages/sklearn/metrics/cluster/_unsupervised.py", line 34, in check_number_of_labels
+    raise ValueError("Number of labels is %d. Valid values are 2 "
+ValueError: Number of labels is 1. Valid values are 2 to n_samples - 1 (inclusive)
+```
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
 - [x] nonTDA on random for second pipeline

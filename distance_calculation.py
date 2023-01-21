@@ -213,3 +213,7 @@ if __name__ == "__main__":
     # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_positive --output_dir output_positive
     # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds n --data_dir full_data_positive --output_dir output_positive
     # python distance_calculation.py --method ws --start 1 --end 316 --distance n --mds y --data_dir full_data_positive --output_dir output_positive
+
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_linear --output_dir output_linear
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_positive_linear --output_dir output_positive_linear
+    # python distance_calculation.py --method ws --start 1 --end 316 --distance y --mds y --data_dir full_data_negative_linear --output_dir output_negative_linear

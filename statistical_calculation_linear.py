@@ -1,0 +1,125 @@
+import json
+from scipy.stats import f_oneway, ttest_rel
+import matplotlib.pyplot as plt
+import numpy as np
+from statistics import mean
+import argparse
+from utils import timer
+
+def get_anova_p_value(wd_645_1400, wd_1400_2500, wd_2500_645):
+    anova_result = f_oneway(wd_645_1400, wd_1400_2500, wd_2500_645)
+    return anova_result[1]
+
+
+def get_t_values(wd_645_1400, wd_1400_2500, wd_2500_645):
+    t_values = []
+    t_values.append(ttest_rel(wd_645_1400, wd_1400_2500)[1])
+    t_values.append(ttest_rel(wd_1400_2500, wd_2500_645)[1])
+    t_values.append(ttest_rel(wd_2500_645, wd_645_1400)[1])
+    return [round(i, 6) for i in t_values]
+
+
+def get_p_values(wd_645_1400, wd_1400_2500, wd_2500_645):
+    p_values = []
+    p_values.append(f_oneway(wd_645_1400, wd_1400_2500)[1])
+    p_values.append(f_oneway(wd_1400_2500, wd_2500_645)[1])
+    p_values.append(f_oneway(wd_2500_645, wd_645_1400)[1])
+    return [round(i, 6) for i in p_values]
+
+
+def draw_line_chart(x, y, y_limit_bottom=0.0, y_limit_top=60.0,
+                    x_limit_left=0, x_limit_right=320,
+                    x_axis_label=None,
+                    y_axis_label=None, legend=None, title=None):
+    plt.figure(figsize=(6, 3.5))
+    if legend:
+        plt.plot(x, y, label=legend)
+        plt.legend()
+    if x_axis_label:
+        plt.xlabel(x_axis_label)
+    if y_axis_label:
+        plt.ylabel(y_axis_label)
+    if title:
+        plt.title(title)
+    plt.ylim([y_limit_bottom, y_limit_top])
+    plt.xlim([x_limit_left, x_limit_right])
+    plt.tight_layout()
+    plt.show()
+
+
+def draw_boxplots(labels, data, colors, x_axis_label=None, y_axis_label=None):
+    plt.figure(figsize=(6, 3.5))
+    bp = plt.boxplot(data, notch=True, vert=True,
+                     patch_artist=True,
+                     labels=labels,
+                     medianprops={"color": "black"})
+    if x_axis_label:
+        plt.xlabel(x_axis_label)
+    if y_axis_label:
+        plt.ylabel(y_axis_label)
+
+    for box, color in zip(bp['boxes'], colors):
+        box.set_facecolor(color)
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_mds(mds_matrix, title, color, index):
+    x = mds_matrix[:, 0]
+    y = mds_matrix[:, 1]
+    ax = plt.subplot(1, 3, index)
+    ax.scatter(x, y, label=title, c=color)
+    ax.legend()
+    ax.set_title(title)
+    plt.tight_layout()
+
+
+def get_distribution_distance(data, distance, total_subjects, reverse=False):
+    if reverse:
+        total_count = len(list(filter(lambda score: score >= distance, data)))
+    else:
+        total_count = len(list(filter(lambda score: score <= distance, data)))
+    percentage = (total_count / total_subjects) * 100
+    return f"Distance: {distance:3d}, number of subjects: {total_count:3d}, percentage: {percentage:.2f}%"
+
+def get_user_input():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output_dir', '-o',
+                        help='Enter output data folder (e.g. output)')
+    args = parser.parse_args()
+    if args.output_dir:
+        main(output_dir=args.output_dir)
+        return
+    parser.print_help()
+
+@timer
+def main(output_dir="output"):
+    distances_between_cohorts_data_file = f"{output_dir}/distances_between_cohorts_ws.json"
+    mds_mx645_data_file = f"{output_dir}/mds_mx645_ws.json"
+    mds_mx1400_data_file = f"{output_dir}/mds_mx1400_ws.json"
+    mds_std2500_data_file = f"{output_dir}/mds_std2500_ws.json"
+    with open(distances_between_cohorts_data_file) as fp:
+        distance_between_cohorts = json.load(fp)
+        wd_645_1400 = [distance[0] for distance in distance_between_cohorts]
+        wd_1400_2500 = [distance[1] for distance in distance_between_cohorts]
+        wd_2500_645 = [distance[2] for distance in distance_between_cohorts]
+
+    t_values = get_t_values(wd_645_1400, wd_1400_2500, wd_2500_645)
+    print("T-values:")
+    for value in t_values:
+        print(f"{value:.6f}", end=" ")
+    print("")
+    p_values = get_p_values(wd_645_1400, wd_1400_2500, wd_2500_645)
+    print("P-values:")
+    for value in p_values:
+        print(f"{value:.6f}", end=" ")
+    print("")
+    p_value = get_anova_p_value(wd_645_1400, wd_1400_2500, wd_2500_645)
+    p_value = round(p_value, 6)
+    print(f"ANOVA test p-value: {p_value:.6f}")
+
+if __name__ == "__main__":
+    get_user_input()
+
+# python statistical_calculation_linear.py --output_dir output_linear
+# python statistical_calculation_linear.py --output_dir output_positive_linear

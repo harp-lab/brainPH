@@ -1,7 +1,7 @@
 import json
 import math
 import os
-
+import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
@@ -204,12 +204,21 @@ def get_subjects_cluster_id(output_dir, mx_645_mds_path,
     print(f"Generated {adj_matrix_file}\n")
 
 
+def get_user_input():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--output_dir', '-o',
+                        help='Enter output data folder (e.g. output)')
+    args = parser.parse_args()
+    if args.output_dir:
+        main(output_dir=args.output_dir)
+        return
+    parser.print_help()
+
 @timer
-def main():
-    mx_645_mds_ws = "output/mds_mx645_ws.json"
-    mx_1400_mds_ws = "output/mds_mx1400_ws.json"
-    std_2500_mds_ws = "output/mds_std2500_ws.json"
-    output_dir = "output"
+def main(output_dir="output"):
+    mx_645_mds_ws = f"{output_dir}/mds_mx645_ws.json"
+    mx_1400_mds_ws = f"{output_dir}/mds_mx1400_ws.json"
+    std_2500_mds_ws = f"{output_dir}/mds_std2500_ws.json"
 
 
     # mx_645_mds_ws = "output_positive/mds_mx645_ws.json"
@@ -236,4 +245,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    get_user_input()
+
+
+# python cluster_calculation.py --output_dir output
+# python cluster_calculation.py --output_dir output_linear
+# python cluster_calculation.py --output_dir output_positive_linear
+# python cluster_calculation.py --output_dir output_negative_linear
