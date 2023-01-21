@@ -113,3 +113,6 @@ random_data/
 random_data_1/
 full_data_positive/
 full_data_negative/
+full_data_linear/
+full_data_positive_linear/
+full_data_negative_linear/

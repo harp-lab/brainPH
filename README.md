@@ -618,6 +618,8 @@ cohort comparison are statistically **dissimilar**.
 - Within cohort: clustering
 - Across cohorts: statistical analysis
 - Original dataset: [timeseries.Yeo2011.mm316.mat](full_data/timeseries.Yeo2011.mm316.mat)
+- Total negative in correlation coefficient: 1234732 from [all_positive_linear.m](matlab/all_positive_linear.m)
+- Total positive in correlation coefficient: 10870280 from [all_negative_linear.m](matlab/all_negative_linear.m)
 
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
