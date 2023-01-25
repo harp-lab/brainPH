@@ -205,18 +205,31 @@ def get_subjects_cluster_id(output_dir, mx_645_mds_path,
     print(f"Generated {adj_matrix_file}\n")
 
 
-def plot_mds(mds_matrix_file, title, image_name):
+def plot_mds(mds_matrix_file, title, image_name,
+             start_subject=1, end_subject=316):
     with open(mds_matrix_file) as fp:
         mds_matrix = np.array(json.load(fp))
     x = mds_matrix[:, 0]
     y = mds_matrix[:, 1]
     ax = plt.subplot(1, 1, 1)
     color = [i for i in range(1, 317)]
+    show_colorbar = True
+    if start_subject != 1:
+        # x = x[start_subject-1:end_subject]
+        # y = y[start_subject-1:end_subject]
+        color = []
+        for i in range(316):
+            if start_subject <= i <= end_subject:
+                color.append("green")
+            else:
+                color.append('#0f0f0f00')
+        show_colorbar = False
     mappable = ax.scatter(x, y, label=title, c=color, cmap="tab20c", s=150)
     ax.set_title(title, fontsize=18)
     plt.tight_layout()
-    cbar = plt.colorbar(mappable)
-    cbar.set_label("Subjects", fontsize=16)
+    if show_colorbar:
+        cbar = plt.colorbar(mappable)
+        cbar.set_label("Subjects", fontsize=16)
     plt.gcf().set_size_inches(12, 10)
     plt.savefig(image_name, dpi=300)
     plt.close()
@@ -239,29 +252,30 @@ def main(output_dir="output"):
     mx_1400_mds_ws = f"{output_dir}/mds_mx1400_ws.json"
     std_2500_mds_ws = f"{output_dir}/mds_std2500_ws.json"
 
-    cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
-                                               mx_1400_mds_ws,
-                                               std_2500_mds_ws,
-                                               output_dir, distance="ws",
-                                               single_figure=False)
-    print(f"Number of clusters in 3 cohorts: {cluster_summary}")
-
-    get_subjects_cluster_id(output_dir, mx_645_mds_ws,
-                            mx_1400_mds_ws, std_2500_mds_ws)
-
+    # cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
+    #                                            mx_1400_mds_ws,
+    #                                            std_2500_mds_ws,
+    #                                            output_dir, distance="ws",
+    #                                            single_figure=False)
+    # print(f"Number of clusters in 3 cohorts: {cluster_summary}")
+    #
+    # get_subjects_cluster_id(output_dir, mx_645_mds_ws,
+    #                         mx_1400_mds_ws, std_2500_mds_ws)
 
     title = f'mx645'
     image_name = f"{output_dir}/{output_dir}_{title}_mds_color.png"
-    plot_mds(mx_645_mds_ws, title, image_name)
+    plot_mds(mx_645_mds_ws, title, image_name, start_subject=126,
+             end_subject=189)
 
     title = f'mx1400'
     image_name = f"{output_dir}/{output_dir}_{title}_mds_color.png"
-    plot_mds(mx_1400_mds_ws, title, image_name)
+    plot_mds(mx_1400_mds_ws, title, image_name, start_subject=126,
+             end_subject=189)
 
     title = f'std2500'
     image_name = f"{output_dir}/{output_dir}_{title}_mds_color.png"
-    plot_mds(std_2500_mds_ws, title, image_name)
-
+    plot_mds(std_2500_mds_ws, title, image_name, start_subject=126,
+             end_subject=189)
 
 
 if __name__ == "__main__":
