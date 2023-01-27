@@ -281,8 +281,6 @@ def main(output_dir="output"):
 if __name__ == "__main__":
     get_user_input()
 
-# python cluster_calculation.py --output_dir output
 # python cluster_calculation.py --output_dir output_linear
 # python cluster_calculation.py --output_dir output_positive_linear
-# python cluster_calculation.py --output_dir output_negative_linear
 # python cluster_calculation.py --output_dir output_random

@@ -56,6 +56,10 @@ ps aux | grep ashovon
 srun --ntasks=1 --cpus-per-task=6 --mem-per-cpu=8192 --time=50:00:00 --partition=medium --job-name=fmri --pty /bin/bash
 srun --ntasks=4 --cpus-per-task=6 --mem-per-cpu=8192 --time=50:00:00 --partition=medium --job-name=fmri_1400 --pty /bin/bash
 ```
+- Download a file from Cheaha to local:
+```shell
+scp ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/fcn_645.png .
+```
 - Download all files from Cheaha directory to local:
 ```shell
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPH/random_data_1 .

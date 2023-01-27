@@ -118,6 +118,40 @@ def main(output_dir="output"):
     p_value = round(p_value, 6)
     print(f"ANOVA test p-value: {p_value:.6f}")
 
+
+    mean_wd_645_1400 = round(mean(wd_645_1400), 3)
+    print(f"Mean WD_MX645_MX1400: {mean_wd_645_1400}")
+    mean_wd_1400_2500 = round(mean(wd_1400_2500), 3)
+    print(f"Mean WD_MX1400_STD2500: {mean_wd_1400_2500}")
+    mean_wd_2500_645 = round(mean(wd_2500_645), 3)
+    print(f"Mean WD_STD2500_MX645: {mean_wd_2500_645}")
+    distance_2 = get_distribution_distance(wd_645_1400, 2, 316)
+    distance_5 = get_distribution_distance(wd_645_1400, 5, 316)
+    distance_10 = get_distribution_distance(wd_645_1400, 10, 316, True)
+    print(f"WD_MX645_MX1400: {distance_2}")
+    print(f"WD_MX645_MX1400: {distance_5}")
+    print(f"WD_MX645_MX1400> {distance_10}")
+
+    subject_numbers = [i for i in range(1, 317)]
+    boxplot_data = [wd_645_1400, wd_1400_2500, wd_2500_645]
+    boxplot_labels = ["WD(645ms-1400ms)", "WD(1400ms-2500ms)",
+                      "WD(2500ms-645ms)"]
+    boxplot_colors = ['orangered', 'lightblue', 'lightgreen']
+    draw_boxplots(boxplot_labels, boxplot_data, boxplot_colors,
+                  "Distributions",
+                  "Distance")
+    # WD_mx645_mx1400
+    draw_line_chart(subject_numbers, wd_645_1400, 0, 60, 0, 320,
+                    "Subject ID", "Distance", "WD(mx645 - mx1400)")
+    # WD_mx1400_std2500
+    draw_line_chart(subject_numbers, wd_1400_2500, 0, 60, 0, 320,
+                    "Subject ID", "Distance", "WD(mx1400 - std2500)")
+    # WD_std2500_mx645
+    draw_line_chart(subject_numbers, wd_2500_645, 0, 60, 0, 320,
+                    "Subject ID", "Distance", "WD(std2500 - mx645)")
+
+
+
 if __name__ == "__main__":
     get_user_input()
 
