@@ -252,15 +252,15 @@ def main(output_dir="output"):
     mx_1400_mds_ws = f"{output_dir}/mds_mx1400_ws.json"
     std_2500_mds_ws = f"{output_dir}/mds_std2500_ws.json"
 
-    # cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
-    #                                            mx_1400_mds_ws,
-    #                                            std_2500_mds_ws,
-    #                                            output_dir, distance="ws",
-    #                                            single_figure=False)
-    # print(f"Number of clusters in 3 cohorts: {cluster_summary}")
-    #
-    # get_subjects_cluster_id(output_dir, mx_645_mds_ws,
-    #                         mx_1400_mds_ws, std_2500_mds_ws)
+    cluster_summary = generate_kmeans_clusters(mx_645_mds_ws,
+                                               mx_1400_mds_ws,
+                                               std_2500_mds_ws,
+                                               output_dir, distance="ws",
+                                               single_figure=False)
+    print(f"Number of clusters in 3 cohorts: {cluster_summary}")
+
+    get_subjects_cluster_id(output_dir, mx_645_mds_ws,
+                            mx_1400_mds_ws, std_2500_mds_ws)
 
     title = f'mx645'
     image_name = f"{output_dir}/{output_dir}_{title}_mds_color.png"
