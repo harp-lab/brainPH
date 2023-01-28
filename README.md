@@ -256,6 +256,10 @@ Cluster group: 111: #match: 29
 
 Max + reverse: 115 + 83 = 198
 
+645-1400 : 236
+1400-2500 : 251
+2500-645 : 225
+
 Adjacency matrix:
 output_linear:
 Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
@@ -266,10 +270,10 @@ Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
 50 135 139 46 185 0 
 90 41 19 112 0 131 
 ```
-- Clustering result for random data for all three cohorts using Wasserstein distance: 
-  - mx645: ![alt clusters_mx645_non_tda_linear](output_linear/clusters_mx645_ws.png)
-  - mx1400: ![alt clusters_mx1400_non_tda_linear](output_linear/clusters_mx1400_ws.png)
-  - std2500: ![alt clusters_std2500_non_tda_linear](output_linear/clusters_std2500_ws.png)
+- Clustering result for full data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_tda_linear](output_linear/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_tda_linear](output_linear/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_tda_linear](output_linear/clusters_std2500_ws.png)
 ### Statistical analysis on tda pipeline with linear data (across cohort):
 ```shell
 python statistical_calculation_linear.py --output_dir output_linear
@@ -292,59 +296,39 @@ cohort comparison are statistically **similar**.
 | WD(P3, P1) | WD(P1, P2) | 0.286013 | 0.387180 |
 
 
-
-## TDA cluster generation (positive linear data)
+## TDA cluster generation (random data - 1 sample)
 ### Clustering result (within cohort):
 ```shell
-python cluster_calculation.py --output_dir output_positive_linear
+python cluster_calculation.py --output_dir output_random
 Number of clusters in 3 cohorts: [2, 2, 2]
-output_positive_linear:
-Cluster group: 000: #match: 24
-Cluster group: 001: #match: 7
-Cluster group: 010: #match: 26
-Cluster group: 011: #match: 83
-Cluster group: 100: #match: 115
-Cluster group: 101: #match: 12
-Cluster group: 110: #match: 20
-Cluster group: 111: #match: 29
+output_random:
+Cluster group: 000: #match: 35
+Cluster group: 001: #match: 38
+Cluster group: 010: #match: 34
+Cluster group: 011: #match: 43
+Cluster group: 100: #match: 36
+Cluster group: 101: #match: 32
+Cluster group: 110: #match: 42
+Cluster group: 111: #match: 56
 
-Max + reverse: 115 + 83 = 198
+Max + reverse: 56 + 35 = 91
 
 Adjacency matrix:
-output_positive_linear:
+output_random:
 Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
-140 0 31 109 50 90 
-0 176 127 49 135 41 
-31 127 158 0 139 19 
-109 49 0 158 46 112 
-50 135 139 46 185 0 
-90 41 19 112 0 131 
-
+150 0 73 77 69 81 
+0 166 68 98 78 88 
+73 68 141 0 71 70 
+77 98 0 175 76 99 
+69 78 71 76 147 0 
+81 88 70 99 0 169 
 ```
 - Clustering result for random data for all three cohorts using Wasserstein distance: 
-  - mx645: ![alt clusters_mx645_non_tda_positive](output_positive_linear/clusters_mx645_ws.png)
-  - mx1400: ![alt clusters_mx1400_non_tda_positive](output_positive_linear/clusters_mx1400_ws.png)
-  - std2500: ![alt clusters_std2500_non_tda_positive](output_positive_linear/clusters_std2500_ws.png)
-### Statistical analysis on tda pipeline with positive linear data (across cohort):
-```shell
-python statistical_calculation_linear.py --output_dir output_positive_linear
-T-values:
-0.059466 0.460986 0.286332 
-P-values:
-0.088657 0.520177 0.387527 
-ANOVA test p-value: 0.291106
-```
-- T-values and p-values obtained by pairwise t-tests
-comparing the WDs between data cohorts. Since all p-values
-are **larger** than 0.05, the means of WD distributions for each
-cohort comparison are statistically **similar**.
+  - mx645: ![alt clusters_mx645_tda_random](output_random/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_tda_random](output_random/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_tda_random](output_random/clusters_std2500_ws.png)
 
 
-|            |            | t-value  | p-value  |
-|------------|------------|----------|----------|
-| WD(P1, P2) | WD(P2, P3) | 0.059466 | 0.088657 |
-| WD(P2, P3) | WD(P3, P1) | 0.460986 | 0.520177 |
-| WD(P3, P1) | WD(P1, P2) | 0.286332 | 0.387527 |
 
 ### Mean and standard deviation of random clusters (49 out of 50)
 ```shell
