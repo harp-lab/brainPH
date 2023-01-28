@@ -59,6 +59,7 @@ srun --ntasks=4 --cpus-per-task=6 --mem-per-cpu=8192 --time=50:00:00 --partition
 - Download a file from Cheaha to local:
 ```shell
 scp ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/fcn_645.png .
+scp ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPH/randomcluster_2_job.out .
 ```
 - Download all files from Cheaha directory to local:
 ```shell

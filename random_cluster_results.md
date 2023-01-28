@@ -1,5 +1,6 @@
-## Random cluster results
-```shellGenerated output_random_data_1/clusters_ws.json
+## Random cluster results (1-50)
+```shell
+Generated output_random_data_1/clusters_ws.json
 output_random_data_1: Number of clusters in 3 cohorts (645ms, 1400ms, 2500ms): [2, 2, 2]
 output_random_data_1:
 Cluster group: 000: #match: 35

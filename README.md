@@ -342,7 +342,7 @@ Standard deviation value of (Max + Reverse): 5.738786759358441
 - Original dataset: [timeseries.Yeo2011.mm316.mat](full_data/timeseries.Yeo2011.mm316.mat)
 - Total negative in correlation coefficient: 1234732 from [all_positive_linear.m](matlab/all_positive_linear.m)
 - Total positive in correlation coefficient: 10870280 from [all_negative_linear.m](matlab/all_negative_linear.m)
-
+- 3 out of 148 random dataset returns cluster `2, 2, 4`, 1 returns `4, 2, 2`, and 144 returns `2, 2, 2`.
 ### To Do:
 - [x] non-TDA experiments for within cohort and comparison across cohort
 - [x] nonTDA on random for second pipeline
