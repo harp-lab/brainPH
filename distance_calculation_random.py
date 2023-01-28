@@ -210,7 +210,7 @@ def main(method, start_subject=1, end_subject=316,
 
 
 if __name__ == "__main__":
-    for i in range(50):
+    for i in range(51, 150):
         experiment_number = i + 1
         random_data_dir = f"random_data_" + str(experiment_number)
         generate_random_data(random_data_dir, experiment_number,

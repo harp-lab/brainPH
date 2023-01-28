@@ -1,11 +1,11 @@
 #!/bin/bash
 #
-#SBATCH --job-name=randomdistance
-#SBATCH --output=randomdistance_job.out
+#SBATCH --job-name=randomdistance_2
+#SBATCH --output=randomdistance_2_job.out
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
 #SBATCH --partition=amd-hdr100
-#SBATCH --time=10:00:00
+#SBATCH --time=16:00:00
 #SBATCH --mem-per-cpu=4069
 
 # load your Anaconda module here and activate your virtual environment (if needed)

@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-#SBATCH --job-name=randomcluster
-#SBATCH --output=randomcluster_job.out
+#SBATCH --job-name=randomcluster_2
+#SBATCH --output=randomcluster_2_job.out
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=12
 #SBATCH --partition=amd-hdr100

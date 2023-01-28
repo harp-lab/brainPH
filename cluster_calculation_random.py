@@ -219,7 +219,7 @@ def get_subjects_cluster_id(output_dir, mx_645_mds_path,
 
 @timer
 def main():
-    for i in range(50):
+    for i in range(51, 150):
         experiment_number = i + 1
         random_data_dir = f"random_data_" + str(experiment_number)
         output_directory = "output_" + random_data_dir
