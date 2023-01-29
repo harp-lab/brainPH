@@ -69,6 +69,7 @@ scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/full_data_negative .
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/full_data_linear .
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/full_data_positive_linear .
 scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/full_data_negative_linear .
+scp -r ashovon@cheaha.rc.uab.edu:/home/ashovon/brainPHmatlab/full_data_linear_downsample .
 ```
 - Upload a file from local directory to Cheaha
 ```shell

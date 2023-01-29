@@ -1,3 +1,58 @@
+## TDA cluster generation (linear downsample data)
+### Clustering result (within cohort):
+```shell
+python cluster_calculation.py --output_dir output_linear_downsample
+
+Number of clusters in 3 cohorts: [2, 2, 2]
+output_linear_downsample:
+Cluster group: 000: #match: 27
+Cluster group: 001: #match: 81
+Cluster group: 010: #match: 21
+Cluster group: 011: #match: 7
+Cluster group: 100: #match: 27
+Cluster group: 101: #match: 31
+Cluster group: 110: #match: 110
+Cluster group: 111: #match: 12
+Generated output_linear_downsample/clusters_triplet.json
+
+Max + rev: 110 + 81 = 191
+
+Adjacency matrix:
+output_linear_downsample:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+136 0 108 28 48 88 
+0 180 58 122 137 43 
+108 58 166 0 54 112 
+28 122 0 150 131 19 
+48 137 54 131 185 0 
+88 43 112 19 0 131 
+
+```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_linear_downsample](output_linear_downsample/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_linear_downsample](output_linear_downsample/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_tda_linear_downsample](output_linear_downsample/clusters_std2500_ws.png)
+### Statistical analysis on tda pipeline with positive linear data (across cohort):
+```shell
+python statistical_calculation_linear.py --output_dir output_linear_downsample
+T-values:
+0.137380 0.362524 0.621848 
+P-values:
+0.182718 0.439049 0.686200 
+ANOVA test p-value: 0.460228
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **similar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.137380 | 0.182718 |
+| WD(P2, P3) | WD(P3, P1) | 0.362524 | 0.439049 |
+| WD(P3, P1) | WD(P1, P2) | 0.621848 | 0.686200 |
+
 ## TDA cluster generation (positive linear data)
 ### Clustering result (within cohort):
 ```shell

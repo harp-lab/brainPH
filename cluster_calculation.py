@@ -284,3 +284,4 @@ if __name__ == "__main__":
 # python cluster_calculation.py --output_dir output_linear
 # python cluster_calculation.py --output_dir output_positive_linear
 # python cluster_calculation.py --output_dir output_random
+# python cluster_calculation.py --output_dir output_linear_downsample
