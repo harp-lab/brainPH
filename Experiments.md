@@ -32,7 +32,7 @@ Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
   - mx645: ![alt clusters_mx645_non_tda_linear_downsample](output_linear_downsample/clusters_mx645_ws.png)
   - mx1400: ![alt clusters_mx1400_non_tda_linear_downsample](output_linear_downsample/clusters_mx1400_ws.png)
   - std2500: ![alt clusters_std2500_tda_linear_downsample](output_linear_downsample/clusters_std2500_ws.png)
-### Statistical analysis on tda pipeline with positive linear data (across cohort):
+### Statistical analysis on downsample linear data (across cohort):
 ```shell
 python statistical_calculation_linear.py --output_dir output_linear_downsample
 T-values:
