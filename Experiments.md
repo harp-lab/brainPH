@@ -1,3 +1,64 @@
+## TDA cluster generation (positive linear data)
+### Clustering result (within cohort):
+```shell
+python cluster_calculation.py --output_dir output_positive_linear
+Number of clusters in 3 cohorts: [2, 2, 2]
+output_positive_linear:
+Cluster group: 000: #match: 24
+Cluster group: 001: #match: 7
+Cluster group: 010: #match: 26
+Cluster group: 011: #match: 83
+Cluster group: 100: #match: 115
+Cluster group: 101: #match: 12
+Cluster group: 110: #match: 20
+Cluster group: 111: #match: 29
+
+Max + reverse: 115 + 83 = 198
+
+Adjacency matrix:
+output_positive_linear:
+Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
+140 0 31 109 50 90 
+0 176 127 49 135 41 
+31 127 158 0 139 19 
+109 49 0 158 46 112 
+50 135 139 46 185 0 
+90 41 19 112 0 131 
+
+```
+- Clustering result for random data for all three cohorts using Wasserstein distance: 
+  - mx645: ![alt clusters_mx645_non_tda_positive](output_positive_linear/clusters_mx645_ws.png)
+  - mx1400: ![alt clusters_mx1400_non_tda_positive](output_positive_linear/clusters_mx1400_ws.png)
+  - std2500: ![alt clusters_std2500_non_tda_positive](output_positive_linear/clusters_std2500_ws.png)
+### Statistical analysis on tda pipeline with positive linear data (across cohort):
+```shell
+python statistical_calculation_linear.py --output_dir output_positive_linear
+T-values:
+0.059466 0.460986 0.286332 
+P-values:
+0.088657 0.520177 0.387527 
+ANOVA test p-value: 0.291106
+Mean WD_MX645_MX1400: 4.304
+Mean WD_MX1400_STD2500: 4.01
+Mean WD_STD2500_MX645: 4.135
+WD_MX645_MX1400: Distance:   2, number of subjects:  42, percentage: 13.29%
+WD_MX645_MX1400: Distance:   5, number of subjects: 207, percentage: 65.51%
+WD_MX645_MX1400> Distance:  10, number of subjects:   4, percentage: 1.27%
+Method main executed in 76.3323 seconds
+
+```
+- T-values and p-values obtained by pairwise t-tests
+comparing the WDs between data cohorts. Since all p-values
+are **larger** than 0.05, the means of WD distributions for each
+cohort comparison are statistically **similar**.
+
+
+|            |            | t-value  | p-value  |
+|------------|------------|----------|----------|
+| WD(P1, P2) | WD(P2, P3) | 0.059466 | 0.088657 |
+| WD(P2, P3) | WD(P3, P1) | 0.460986 | 0.520177 |
+| WD(P3, P1) | WD(P1, P2) | 0.286332 | 0.387527 |
+
 ## TDA cluster generation (linear downsample data)
 ### Clustering result (within cohort):
 ```shell
@@ -52,61 +113,6 @@ cohort comparison are statistically **similar**.
 | WD(P1, P2) | WD(P2, P3) | 0.137380 | 0.182718 |
 | WD(P2, P3) | WD(P3, P1) | 0.362524 | 0.439049 |
 | WD(P3, P1) | WD(P1, P2) | 0.621848 | 0.686200 |
-
-## TDA cluster generation (positive linear data)
-### Clustering result (within cohort):
-```shell
-python cluster_calculation.py --output_dir output_positive_linear
-Number of clusters in 3 cohorts: [2, 2, 2]
-output_positive_linear:
-Cluster group: 000: #match: 24
-Cluster group: 001: #match: 7
-Cluster group: 010: #match: 26
-Cluster group: 011: #match: 83
-Cluster group: 100: #match: 115
-Cluster group: 101: #match: 12
-Cluster group: 110: #match: 20
-Cluster group: 111: #match: 29
-
-Max + reverse: 115 + 83 = 198
-
-Adjacency matrix:
-output_positive_linear:
-Rows X Columns: [645 clusters, 1400 clusters, 2500 clusters]
-140 0 31 109 50 90 
-0 176 127 49 135 41 
-31 127 158 0 139 19 
-109 49 0 158 46 112 
-50 135 139 46 185 0 
-90 41 19 112 0 131 
-
-```
-- Clustering result for random data for all three cohorts using Wasserstein distance: 
-  - mx645: ![alt clusters_mx645_non_tda_positive](output_positive_linear/clusters_mx645_ws.png)
-  - mx1400: ![alt clusters_mx1400_non_tda_positive](output_positive_linear/clusters_mx1400_ws.png)
-  - std2500: ![alt clusters_std2500_non_tda_positive](output_positive_linear/clusters_std2500_ws.png)
-### Statistical analysis on tda pipeline with positive linear data (across cohort):
-```shell
-python statistical_calculation_linear.py --output_dir output_positive_linear
-T-values:
-0.059466 0.460986 0.286332 
-P-values:
-0.088657 0.520177 0.387527 
-ANOVA test p-value: 0.291106
-```
-- T-values and p-values obtained by pairwise t-tests
-comparing the WDs between data cohorts. Since all p-values
-are **larger** than 0.05, the means of WD distributions for each
-cohort comparison are statistically **similar**.
-
-
-|            |            | t-value  | p-value  |
-|------------|------------|----------|----------|
-| WD(P1, P2) | WD(P2, P3) | 0.059466 | 0.088657 |
-| WD(P2, P3) | WD(P3, P1) | 0.460986 | 0.520177 |
-| WD(P3, P1) | WD(P1, P2) | 0.286332 | 0.387527 |
-
-
 
 ### Old d(u,v) (sqrt) equation
 - Similarity between clusters:
