@@ -48,7 +48,7 @@ matrix
     - WD(std2500 - mx645)
 - Generated 1 JSON file with 316 arrays, each array contains 3 values
 - Generated
-  file: [distances_between_cohorts_ws.json](output/distances_between_cohorts_ws.json)
+  file: [distances_between_cohorts_ws.json](output_linear/distances_between_cohorts_ws.json)
 
 ## Pipeline 2: Comparison within a cohort
 
@@ -72,9 +72,9 @@ matrix
     - WD_matrix(std2500): 316 x 316
 - Generated 3 JSON files each with 316 x 316 matrix
 - Generated files:
-    - [distance_matrix_mx645_ws.json](output/distance_matrix_mx645_ws.json)
-    - [distance_matrix_mx1400_ws.json](output/distance_matrix_mx1400_ws.json)
-    - [distance_matrix_std2500_ws.json](output/distance_matrix_std2500_ws.json)
+    - [distance_matrix_mx645_ws.json](output_linear/distance_matrix_mx645_ws.json)
+    - [distance_matrix_mx1400_ws.json](output_linear/distance_matrix_mx1400_ws.json)
+    - [distance_matrix_std2500_ws.json](output_linear/distance_matrix_std2500_ws.json)
 
 ### Multidimensional scaling (Wasserstein distance)
 
@@ -83,12 +83,12 @@ matrix
 - Calculated MDS of 2 components for each 1-Wasserstein distance matrix
 - Generated 3 JSON files each with 316 x 2 matrix
 - Generated files:
-    - [mds_mx645_ws.json](output/mds_mx645_ws.json)
-    - [mds_mx1400_ws.json](output/mds_mx1400_ws.json)
-    - [mds_std2500_ws.json](output/mds_std2500_ws.json)
+    - [mds_mx645_ws.json](output_linear/mds_mx645_ws.json)
+    - [mds_mx1400_ws.json](output_linear/mds_mx1400_ws.json)
+    - [mds_std2500_ws.json](output_linear/mds_std2500_ws.json)
 - Applied Kmeans++ clustering by selecting the number of clusters `n` using
   Silhouette Coefficient.
-    - [clustering_ws.json](output/clusters_ws.json)
+    - [clustering_ws.json](output_linear/clusters_ws.json)
 
 ## Statistical analysis
 
